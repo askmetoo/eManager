@@ -1,0 +1,104 @@
+﻿@model eManager.Domain.Employee
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Employee</legend>
+
+        @Html.HiddenFor(model => model.EmployeeID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartmentID)
+            @Html.ValidationMessageFor(model => model.DepartmentID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HireDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HireDate)
+            @Html.ValidationMessageFor(model => model.HireDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save Employee" />
+        </p>
+    </fieldset>
+}
+
+<p>Total <span data-bind='text: dependents().length'>&nbsp;</span> dependent(s)</p>
+
+<table>
+    <tbody data-bind="template: { name: 'dependentRowTemplate', foreach: dependents }"></tbody>
+</table>
+ 
+<script type="text/html" id="dependentRowTemplate">
+    <tr>
+        <td>Name: <input data-bind="value: Name"/></td>
+        <td>Age: <input data-bind="value: Age"/></td>
+        <td>Relation: 
+            <select data-bind="value: Relation"">
+                <option value="0">Parents</option>
+                <option value="1">Spouce</option>
+                <option value="2">Children</option>
+            </select>
+        </td>
+        <td><a href="#" data-bind="click: function () { $parent.removeDependent($data) }">Delete</a></td>
+    </tr>
+</script>
+
+<button data-bind="click: addDependent">Add Dependent</button>
+
+<form class="dependentListEditor" data-bind="submit: save">
+    <button data-bind="enable: dependents().length > 0" type="submit" >Save Dependents</button>
+</form>
+
+<script type="text/javascript">
+    $.getJSON('/Employee/GetDependents?EmployeeID=@Model.EmployeeID', function (data) {
+        var viewModel = {
+            dependents: ko.observableArray(data),
+            removed: ko.observableArray(null),
+            addDependent: function () {
+                this.dependents.push({ Name: "", Age: "", EmployeeID: "@Model.EmployeeID", Relation: "" });
+            },
+            removeDependent: function (dependent) {
+                this.dependents.remove(dependent);
+                this.removed.push({ Name: dependent.Name, Age: dependent.Age });
+            },
+            save: function () {
+                ko.utils.postJson(location.href, { dependents: this.dependents, removed: this.removed });
+            }
+        };
+
+        $(document).ready(function () {
+            ko.applyBindings(viewModel);
+        });
+    });
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

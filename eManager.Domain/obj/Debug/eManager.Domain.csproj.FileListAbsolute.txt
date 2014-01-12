@@ -1,0 +1,6 @@
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\bin\Debug\eManager.Domain.dll
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\bin\Debug\eManager.Domain.pdb
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\obj\Debug\eManager.Domain.dll
+C:\Users\Apple\documents\visual studio 2012\Projects\eManager\eManager.Domain\obj\Debug\eManager.Domain.pdb

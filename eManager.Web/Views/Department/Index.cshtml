@@ -1,0 +1,20 @@
+﻿@model IEnumerable<eManager.Domain.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create Department", "Create", "Department")
+</p>
+
+<ul>
+    @foreach (var department in Model)
+    {
+        <li>@Html.ActionLink(department.Name, "Detail", "Department", new { department.DepartmentID }, null) -
+            @Html.ActionLink("Edit", "Edit", "Department", new { department.DepartmentID }, null)
+        </li>
+    }
+</ul>

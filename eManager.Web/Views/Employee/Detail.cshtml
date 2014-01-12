@@ -1,0 +1,65 @@
+﻿@model eManager.Domain.Employee
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail of @Model.Name</h2>
+
+<fieldset>
+    <legend>Employee</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DepartmentID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepartmentID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HireDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HireDate)
+    </div>
+</fieldset>
+
+<p>Total @Model.Dependents.Count() dependent(s)</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dependents.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dependents.First().Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dependents.First().Relation)
+        </th>
+    </tr>
+@foreach (var d in Model.Dependents) {
+    <tr>
+        <td>
+            @Html.DisplayFor(dep => d.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(dep => d.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(dep => d.Relation)
+        </td>
+    </tr>
+}
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html >
+<html lang="en" class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - eManager ASP.NET MVC Application</title>
+        <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css">
+        <script src="~/Scripts/jquery-2.0.3.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+        <script src="~/Scripts/knockout-2.3.0.js"></script>
+        <script src="~/Scripts/d3.v3.min.js"></script>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="stylesheet" href="~/Content/foundation/normalize.css">
+        <!--<link rel="stylesheet" href="~/Content/foundation/foundation.css"> -->
+        <script src="~/Scripts/vendor/custom.modernizr.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("eManager (alpha)", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+                            <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
+                            <li>@Html.ActionLink("Dependents", "Index", "Dependent")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - eManager ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+
+        @*@Scripts.Render("~/bundles/jquery")*@
+        @RenderSection("scripts", required: false)
+        @*<script src="~/Scripts/vendor/jquery.js"></script>*@
+        <script src="~/Scripts/foundation.min.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        <script>
+            $(function () {
+                $("[id*='Date']").datepicker();
+            });
+        </script>
+    </body>
+</html>

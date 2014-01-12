@@ -1,0 +1,41 @@
+﻿@model eManager.Web.Models.SiteDataMapViewModel
+
+@{
+    ViewBag.Title = "SiteDataMap";
+}
+
+<h2>SiteDataMap</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Departments) {
+    <tr>
+        <td>
+            @Html.ActionLink("Select", "SiteDataMap", new { departmentId = item.DepartmentID })
+        </td>
+        <td>
+            @item.Name
+        </td>
+    </tr>
+}
+
+@if (Model.Employees != null)
+{
+    foreach (var item in Model.Employees) {
+    <tr>
+        <td>
+            @Html.ActionLink("Select", "SiteDataMap", new { employeeId = item.EmployeeID })
+        </td>
+        <td>
+            @item.Name
+        </td>
+    </tr>
+}
+}
+</table>
