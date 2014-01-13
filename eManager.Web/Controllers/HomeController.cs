@@ -48,8 +48,11 @@ namespace eManager.Web.Controllers
 
             if (employeeId != null)
             {
-                viewModel.Dependents = viewModel.Employees.Where(
-                    e => e.EmployeeID == employeeId).Single().Dependents;
+                var selectedEmployee = viewModel.Employees.Where(
+                    e => e.EmployeeID == employeeId).Single();
+                db.Entry(selectedEmployee).Collection(x => x.Dependents).Load();
+
+                viewModel.Dependents = selectedEmployee.Dependents;
             }
 
             return View(viewModel);
