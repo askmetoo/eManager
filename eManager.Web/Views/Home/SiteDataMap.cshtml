@@ -6,12 +6,11 @@
 
 <h2>SiteDataMap</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4><u> Departments </u></h4>
 <table>
     <tr>
         <th></th>
+        <th>Title</th>
     </tr>
 
 @foreach (var item in Model.Departments) {
@@ -23,19 +22,55 @@
             @item.Name
         </td>
     </tr>
-}
+    }
+</table>
 
-@if (Model.Employees != null)
+<table>
+@if (Model.Employees != null && Model.Employees.Count() != 0)
 {
+    <h4><u> Employees </u></h4>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Hire Date</th>
+    </tr>
     foreach (var item in Model.Employees) {
     <tr>
         <td>
-            @Html.ActionLink("Select", "SiteDataMap", new { employeeId = item.EmployeeID })
+            @Html.ActionLink("Select", "SiteDataMap", new {  departmentId = item.DepartmentID, employeeId = item.EmployeeID })
         </td>
         <td>
             @item.Name
         </td>
+        <td>
+            @item.HireDate
+        </td>
     </tr>
+    }
 }
+</table>
+
+<table>
+@if (Model.Dependents != null && Model.Dependents.Count() != 0)
+{
+    <h4><u> Dependents </u></h4>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Relation</th>
+    </tr>
+    foreach (var item in Model.Dependents) {
+    <tr>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Age
+        </td>
+        <td>
+            @item.Relation
+        </td>
+    </tr>
+    }
 }
 </table>

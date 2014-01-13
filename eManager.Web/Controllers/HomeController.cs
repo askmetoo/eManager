@@ -37,8 +37,8 @@ namespace eManager.Web.Controllers
             DepartmentDb db = new DepartmentDb();
             var viewModel = new SiteDataMapViewModel();
 
-            viewModel.Departments = db.Departments
-                .Include(e => e.Employees.Select(d => d.Department));
+            viewModel.Departments = db.Departments.ToList();
+                //.Include(e => e.Employees.Select(d => d.Department));
 
             if (departmentId != null)
             {

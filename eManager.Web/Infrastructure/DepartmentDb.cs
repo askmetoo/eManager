@@ -16,7 +16,7 @@ namespace eManager.Web.Infrastructure
 
         public DepartmentDb() : base("DefaultConnection")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
