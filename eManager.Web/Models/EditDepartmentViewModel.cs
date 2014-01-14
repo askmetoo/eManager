@@ -11,5 +11,6 @@ namespace eManager.Web.Models
     {
         public string CategoryCode { get; set; }
         public SelectList Categories { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }

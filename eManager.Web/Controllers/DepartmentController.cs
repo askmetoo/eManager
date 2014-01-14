@@ -63,6 +63,7 @@ namespace eManager.Web.Controllers
             var model = _db.Departments.Single(d => d.DepartmentID == DepartmentID);
             var viewModel = new EditDepartmentViewModel() { 
                 Name = model.Name,
+                RowVersion = model.RowVersion,
                 Categories = new SelectList(Constants.DepartmentCategory.ToList(), "Key", "Value", model.Category)
             };
             return View(viewModel);
@@ -71,28 +72,43 @@ namespace eManager.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditDepartmentViewModel viewModel, int DepartmentID)
         {
+            var db = new DepartmentDb();
+            var department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
+
             try
             {
-                var db = new DepartmentDb();
-                var department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
-                
                 Mapper.CreateMap<EditDepartmentViewModel, Department>();
                 Mapper.Map<EditDepartmentViewModel, Department>(viewModel, department);
                 if (ModelState.IsValid)
                 {
                     db.Entry(department).State = EntityState.Modified;
                     db.SaveChanges();
+                    return RedirectToAction("index", "Department");
                 }
             }
             catch (DbUpdateConcurrencyException ex)
             {
+                var entry = ex.Entries.Single();
+                var clientValues = (Department)entry.Entity;
+                var databaseValues = (Department)entry.GetDatabaseValues().ToObject();
+
+                if (databaseValues.Name != clientValues.Name)
+                    ModelState.AddModelError("Name", "Current value: "
+                        + databaseValues.Name);
+                ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                  + "was modified by another user after you got the original value. The "
+                  + "edit operation was canceled and the current values in the database "
+                  + "have been displayed. If you still want to edit this record, click "
+                  + "the Save button again. Otherwise click the Back to List hyperlink.");
+                department.RowVersion = databaseValues.RowVersion;
             }
+
+            return View(department);
             
             //var department = context.Departments.Single(d => d.DepartmentID == DepartmentID);
             //department.Name = viewModel.Name;
             //department.Category = viewModel.CategoryCode;
             //context.SaveChanges();
-            return RedirectToAction("index", "Department");
         }
 
         [HttpGet]
