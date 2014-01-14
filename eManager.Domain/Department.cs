@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,9 @@ namespace eManager.Domain
         public virtual double Y { get; set; }
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
     }

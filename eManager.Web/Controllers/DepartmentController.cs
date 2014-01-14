@@ -1,8 +1,11 @@
-﻿using eManager.Domain;
+﻿using AutoMapper;
+using eManager.Domain;
 using eManager.Web.Infrastructure;
 using eManager.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -68,11 +71,27 @@ namespace eManager.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditDepartmentViewModel viewModel, int DepartmentID)
         {
-            var context = new DepartmentDb();
-            var department = context.Departments.Single(d => d.DepartmentID == DepartmentID);
-            department.Name = viewModel.Name;
-            department.Category = viewModel.CategoryCode;
-            context.SaveChanges();
+            try
+            {
+                var db = new DepartmentDb();
+                var department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
+                
+                Mapper.CreateMap<EditDepartmentViewModel, Department>();
+                Mapper.Map<EditDepartmentViewModel, Department>(viewModel, department);
+                if (ModelState.IsValid)
+                {
+                    db.Entry(department).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+            }
+            
+            //var department = context.Departments.Single(d => d.DepartmentID == DepartmentID);
+            //department.Name = viewModel.Name;
+            //department.Category = viewModel.CategoryCode;
+            //context.SaveChanges();
             return RedirectToAction("index", "Department");
         }
 
