@@ -17,8 +17,9 @@ namespace eManager.Domain
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
 
+        [ConcurrencyCheck]
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public virtual byte[] RowVersion { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
     }

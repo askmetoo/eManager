@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201401141812337_RowVersion.Designer.cs">
       <DependentUpon>201401141812337_RowVersion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401142047583_DepartmentUpdate.cs" />
+    <Compile Include="Migrations\201401142047583_DepartmentUpdate.Designer.cs">
+      <DependentUpon>201401142047583_DepartmentUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractDepartment.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -442,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401141812337_RowVersion.resx">
       <DependentUpon>201401141812337_RowVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401142047583_DepartmentUpdate.resx">
+      <DependentUpon>201401142047583_DepartmentUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

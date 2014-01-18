@@ -12,20 +12,21 @@
 
     <fieldset>
         <legend>EditDepartmentViewModel</legend>
+        @Html.HiddenFor(model => model.DepartmentID)
         @Html.HiddenFor(model => model.RowVersion)
         <div class="editor-label">
             @Html.LabelFor(model => model.Name, "Department Name")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name, "You must enter the name")
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
-        <div class="editor-label">
+@*        <div class="editor-label">
             @Html.LabelFor(model => model.CategoryCode, "Category")
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.CategoryCode, Model.Categories, Model.CategoryCode == null ? "" : Model.CategoryCode)
-        </div>
+        </div>*@
         <p>
             <input type="submit" value="Save" />
         </p>

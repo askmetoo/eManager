@@ -9,8 +9,9 @@ namespace eManager.Web.Models
 {
     public class EditDepartmentViewModel : AbstractDepartment
     {
-        public string CategoryCode { get; set; }
-        public SelectList Categories { get; set; }
+        public int DepartmentID { get; set; }
+        //public string CategoryCode { get; set; }
+        //public SelectList Categories { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }

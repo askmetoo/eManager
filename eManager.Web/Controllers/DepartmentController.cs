@@ -16,6 +16,7 @@ namespace eManager.Web.Controllers
     public class DepartmentController : Controller
     {
         private IDepartmentDataSource _db;
+        private DepartmentDb db = new DepartmentDb();
 
         public DepartmentController(IDepartmentDataSource db)
         {
@@ -60,21 +61,26 @@ namespace eManager.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int DepartmentID)
         {
-            var model = _db.Departments.Single(d => d.DepartmentID == DepartmentID);
-            var viewModel = new EditDepartmentViewModel() { 
-                Name = model.Name,
-                RowVersion = model.RowVersion,
-                Categories = new SelectList(Constants.DepartmentCategory.ToList(), "Key", "Value", model.Category)
-            };
+            var model = db.Departments.Single(d => d.DepartmentID == DepartmentID);
+            var viewModel = new EditDepartmentViewModel();
+            //var viewModel = new EditDepartmentViewModel() { 
+            //    DepartmentID = model.DepartmentID,
+            //    Name = model.Name,
+            //    RowVersion = model.RowVersion
+            //    //Categories = new SelectList(Constants.DepartmentCategory.ToList(), "Key", "Value", model.Category)
+            //};
+            Mapper.CreateMap<Department, EditDepartmentViewModel>();
+            Mapper.Map<Department, EditDepartmentViewModel>(model, viewModel);
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(EditDepartmentViewModel viewModel, int DepartmentID)
+        public ActionResult Edit(//[Bind(Include = "DepartmentID, Name, RowVersion")]
+            EditDepartmentViewModel viewModel, int DepartmentID)
         {
-            var db = new DepartmentDb();
-            var department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
-
+            //var db = new DepartmentDb();
+            //Department department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
+            Department department = new Department();
             try
             {
                 Mapper.CreateMap<EditDepartmentViewModel, Department>();
@@ -100,10 +106,10 @@ namespace eManager.Web.Controllers
                   + "edit operation was canceled and the current values in the database "
                   + "have been displayed. If you still want to edit this record, click "
                   + "the Save button again. Otherwise click the Back to List hyperlink.");
-                department.RowVersion = databaseValues.RowVersion;
+                viewModel.RowVersion = databaseValues.RowVersion;
             }
 
-            return View(department);
+            return View(viewModel);
             
             //var department = context.Departments.Single(d => d.DepartmentID == DepartmentID);
             //department.Name = viewModel.Name;
