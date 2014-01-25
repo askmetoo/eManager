@@ -26,7 +26,7 @@ namespace eManager.Web.Models
         public int UserId { get; set; }
         public string UserName { get; set; }
     }
-
+    
     public class RegisterExternalLoginModel
     {
         [Required]

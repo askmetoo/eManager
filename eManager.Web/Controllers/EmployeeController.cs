@@ -1,6 +1,6 @@
-﻿using eManager.Domain;
+﻿using eManager.Web.Models;
 using eManager.Web.Infrastructure;
-using eManager.Web.Models;
+using eManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -91,7 +91,7 @@ namespace eManager.Web.Controllers
         {
             try
             {
-                DepartmentDb db = new DepartmentDb();
+                eManagerContext db = new eManagerContext();
 
                 if (dependents != null || removed != null)
                 {

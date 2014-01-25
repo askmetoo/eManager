@@ -1,6 +1,5 @@
-﻿using eManager.Domain;
+﻿using eManager.Web.Models;
 using eManager.Web.Infrastructure;
-using eManager.Web.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using eManager.Web.ViewModels;
 
 namespace eManager.Web.Controllers
 {
@@ -47,7 +47,7 @@ namespace eManager.Web.Controllers
         [HttpPost]
         public ActionResult Index([FromJson] IEnumerable<Dependent> dependents, [FromJson] IEnumerable<Dependent> removed)
         {
-            DepartmentDb context = new DepartmentDb();
+            eManagerContext context = new eManagerContext();
 
             foreach (Dependent dep in dependents)
             {

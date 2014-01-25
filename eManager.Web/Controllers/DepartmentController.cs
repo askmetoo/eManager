@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using eManager.Domain;
-using eManager.Web.Infrastructure;
 using eManager.Web.Models;
+using eManager.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,13 +9,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using eManager.Web.ViewModels;
 
 namespace eManager.Web.Controllers
 {
     public class DepartmentController : Controller
     {
         private IDepartmentDataSource _db;
-        private DepartmentDb db = new DepartmentDb();
+        private eManagerContext db = new eManagerContext();
 
         public DepartmentController(IDepartmentDataSource db)
         {
@@ -46,7 +46,7 @@ namespace eManager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var department = new DepartmentDb();
+                var department = new eManagerContext();
                 department.Departments.Add(
                 new Department() { Name = viewModel.Name });
 

@@ -1,12 +1,12 @@
-﻿using eManager.Domain;
+﻿using eManager.Web.Models;
 using eManager.Web.Infrastructure;
-using eManager.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using eManager.Web.ViewModels;
 
 namespace eManager.Web.Controllers
 {
@@ -58,7 +58,7 @@ namespace eManager.Web.Controllers
         {
             Department d = (Department)model;
 
-            var department = new DepartmentDb();
+            var department = new eManagerContext();
             department.Departments.Add(
                 new Department() { Name = d.Name });
             department.SaveChanges();

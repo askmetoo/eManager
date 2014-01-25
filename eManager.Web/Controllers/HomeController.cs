@@ -1,5 +1,5 @@
 ﻿using eManager.Web.Infrastructure;
-using eManager.Web.Models;
+using eManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace eManager.Web.Controllers
 
         public ActionResult SiteDataMap(int? departmentId, int? employeeId)
         {
-            DepartmentDb db = new DepartmentDb();
+            eManagerContext db = new eManagerContext();
             var viewModel = new SiteDataMapViewModel();
 
             viewModel.Departments = db.Departments.ToList();

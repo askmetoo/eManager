@@ -1,20 +1,20 @@
 namespace eManager.Web.Migrations
 {
-    using eManager.Domain;
+    using eManager.Web.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<eManager.Web.Infrastructure.DepartmentDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<eManager.Web.Infrastructure.eManagerContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(eManager.Web.Infrastructure.DepartmentDb context)
+        protected override void Seed(eManager.Web.Infrastructure.eManagerContext context)
         {
             var departments = new List<Department>
             {

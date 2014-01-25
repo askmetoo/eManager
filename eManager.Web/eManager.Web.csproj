@@ -219,7 +219,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\DepartmentDb.cs" />
+    <Compile Include="Infrastructure\eManagerContext.cs" />
     <Compile Include="Migrations\201312270641047_InitialCreate.cs" />
     <Compile Include="Migrations\201312270641047_InitialCreate.Designer.cs">
       <DependentUpon>201312270641047_InitialCreate.cs</DependentUpon>
@@ -237,16 +237,21 @@
       <DependentUpon>201401142047583_DepartmentUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AbstractDepartment.cs" />
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Dependent.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\IDeparmentDataSource.cs" />
+    <Compile Include="ViewModels\AbstractDepartment.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\DepartmentLayout.cs" />
-    <Compile Include="Models\DependentViewModel.cs" />
-    <Compile Include="Models\EditDepartmentViewModel.cs" />
-    <Compile Include="Models\CreateDepartmentViewModel.cs" />
-    <Compile Include="Models\CreateEmployeeViewModel.cs" />
-    <Compile Include="Models\GenericModelBinder.cs" />
-    <Compile Include="Models\GenericViewModel.cs" />
-    <Compile Include="Models\SiteDataMapViewModel.cs" />
+    <Compile Include="ViewModels\DepartmentLayout.cs" />
+    <Compile Include="ViewModels\DependentViewModel.cs" />
+    <Compile Include="ViewModels\EditDepartmentViewModel.cs" />
+    <Compile Include="ViewModels\CreateDepartmentViewModel.cs" />
+    <Compile Include="ViewModels\CreateEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\GenericModelBinder.cs" />
+    <Compile Include="ViewModels\GenericViewModel.cs" />
+    <Compile Include="ViewModels\SiteDataMapViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -426,16 +431,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\eManager.Domain\eManager.Domain.csproj">
-      <Project>{2b36cd0e-3b59-465e-8ccb-3a1b5371fe6b}</Project>
-      <Name>eManager.Domain</Name>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201312270641047_InitialCreate.resx">

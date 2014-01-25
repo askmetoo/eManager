@@ -16,7 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-using eManager.Domain;
+using eManager.Web.Models;
 using eManager.Web.Infrastructure;
 using StructureMap;
 namespace eManager.Web.DependencyResolution {
@@ -29,7 +29,7 @@ namespace eManager.Web.DependencyResolution {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
                                     });
-                            x.For<IDepartmentDataSource>().HttpContextScoped().Use<DepartmentDb>();
+                            x.For<IDepartmentDataSource>().HttpContextScoped().Use<eManagerContext>();
                         });
             return ObjectFactory.Container;
         }
