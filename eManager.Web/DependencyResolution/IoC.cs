@@ -32,6 +32,7 @@ namespace eManager.Web.DependencyResolution {
                                         scan.WithDefaultConventions();
                                     });
                             x.For<IDepartmentDataSource>().HttpContextScoped().Use<eManagerContext>();
+                            x.For<IDepartmentRepository>().HttpContextScoped().Use<DepartmentRepository>();
                         });
             return ObjectFactory.Container;
         }
