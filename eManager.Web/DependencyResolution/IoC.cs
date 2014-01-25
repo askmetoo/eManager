@@ -19,6 +19,8 @@
 using eManager.Web.Models;
 using eManager.Web.Infrastructure;
 using StructureMap;
+using eManager.Web.Repository;
+
 namespace eManager.Web.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {

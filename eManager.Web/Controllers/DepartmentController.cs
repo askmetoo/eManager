@@ -10,27 +10,32 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using eManager.Web.ViewModels;
+using eManager.Web.Repository;
 
 namespace eManager.Web.Controllers
 {
     public class DepartmentController : Controller
     {
-        private IDepartmentDataSource _db;
-        private eManagerContext db = new eManagerContext();
+        private IDepartmentRepository repository;
 
-        public DepartmentController(IDepartmentDataSource db)
+        public DepartmentController()
         {
-            _db = db;
+            this.repository = new DepartmentRepository(new eManagerContext());
+        }
+
+        public DepartmentController(IDepartmentRepository repository)
+        {
+            this.repository = repository;
         }
 
         public ActionResult Index()
         {
-            return View(_db.Departments);
+            return View(repository.FindAll());
         }
 
         public ActionResult Detail(int DepartmentID)
         {
-            var model = _db.Departments.Single(d => d.DepartmentID == DepartmentID);
+            var model = repository.FindById(DepartmentID);
             return View(model);
         }
 
@@ -46,11 +51,18 @@ namespace eManager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var department = new eManagerContext();
-                department.Departments.Add(
-                new Department() { Name = viewModel.Name });
+                Department department = new Department();
+                Mapper.CreateMap<CreateDepartmentViewModel, Department>();
+                Mapper.Map<CreateDepartmentViewModel, Department>(viewModel, department);
 
-                department.SaveChanges();
+                repository.Add(department);
+                repository.Save();
+
+                //var department = new eManagerContext();
+                //department.Departments.Add(
+                //new Department() { Name = viewModel.Name });
+
+                //department.SaveChanges();
 
                 return RedirectToAction("index", "Department");
             }
@@ -61,7 +73,8 @@ namespace eManager.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int DepartmentID)
         {
-            var model = db.Departments.Single(d => d.DepartmentID == DepartmentID);
+            //var model = db.Departments.Single(d => d.DepartmentID == DepartmentID);
+            var model = repository.FindById(DepartmentID);
             var viewModel = new EditDepartmentViewModel();
             //var viewModel = new EditDepartmentViewModel() { 
             //    DepartmentID = model.DepartmentID,
@@ -87,8 +100,10 @@ namespace eManager.Web.Controllers
                 Mapper.Map<EditDepartmentViewModel, Department>(viewModel, department);
                 if (ModelState.IsValid)
                 {
-                    db.Entry(department).State = EntityState.Modified;
-                    db.SaveChanges();
+                    //db.Entry(department).State = EntityState.Modified;
+                    //db.SaveChanges();
+                    repository.Update(department);
+                    repository.Save();
                     return RedirectToAction("index", "Department");
                 }
             }
@@ -122,9 +137,11 @@ namespace eManager.Web.Controllers
         {
             if (!string.IsNullOrEmpty(query))
             {
-                var context = _db.Departments
-                                 .Where(d => d.Name.Contains(query))
-                                 .Take(10);
+                var context = 0;
+                //var context = _db.Departments
+                //                 .Where(d => d.Name.Contains(query))
+                //                 .Take(10);
+ 
                 return View(context);
             }
             else
@@ -134,7 +151,7 @@ namespace eManager.Web.Controllers
         [HttpGet]
         public ActionResult GetLayout()
         {
-            var departmentList = _db.Departments.ToList();
+            var departmentList = repository.FindAll().ToList();
             var departments = departmentList.Select(d => new DepartmentLayout()
             {
                 Id = d.DepartmentID,

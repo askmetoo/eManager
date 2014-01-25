@@ -242,6 +242,9 @@
     <Compile Include="Models\Dependent.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IDeparmentDataSource.cs" />
+    <Compile Include="Repository\IDepartmentRepository.cs" />
+    <Compile Include="Repository\DepartmentRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="ViewModels\AbstractDepartment.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="ViewModels\DepartmentLayout.cs" />
@@ -431,7 +434,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
