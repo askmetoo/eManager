@@ -17,6 +17,7 @@ namespace eManager.Web.Infrastructure
         public eManagerContext() : base("DefaultConnection")
         {
             //this.Configuration.LazyLoadingEnabled = false;
+            //Database.SetInitializer<eManagerContext>(new DropCreateDatabaseAlways<eManagerContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

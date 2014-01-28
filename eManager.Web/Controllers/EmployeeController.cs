@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace eManager.Web.Controllers
 {
@@ -19,9 +20,35 @@ namespace eManager.Web.Controllers
             _db = db;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, int? page)
         {
-            return View(_db.Employees);
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            ViewBag.DateSort = sortOrder == "HireDate_asc" ? "HireDate_desc" : "HireDate_asc";
+
+            var employees = from e in _db.Employees
+                            select e;
+
+            switch (sortOrder)
+            {
+                case "Name_desc":
+                    employees = employees.OrderByDescending(e => e.Name);
+                    break;
+                case "HireDate_desc":
+                    employees = employees.OrderByDescending(e => e.HireDate);
+                    break;
+                case "HireDate_asc":
+                    employees = employees.OrderBy(e => e.HireDate);
+                    break;
+                default:
+                    employees = employees.OrderBy(e => e.Name);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(employees.ToPagedList(pageNumber, pageSize));
+
+            //return View(_db.Employees);
         }
 
         [HttpGet]

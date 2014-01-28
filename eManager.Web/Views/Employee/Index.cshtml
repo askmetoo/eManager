@@ -1,4 +1,6 @@
-﻿@model IEnumerable<eManager.Web.Models.Employee>
+﻿@model PagedList.IPagedList<eManager.Web.Models.Employee>
+@using PagedList.Mvc; 
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +14,10 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "index", new { sortOrder = ViewBag.NameSort }) 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HireDate)
+            @Html.ActionLink("Hire Date", "index", new { sortOrder = ViewBag.DateSort })
         </th>
         <th></th>
     </tr>
@@ -37,3 +39,7 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager( Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )

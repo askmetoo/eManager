@@ -18,10 +18,10 @@ namespace eManager.Web.Controllers
     {
         private IDepartmentRepository repository;
 
-        public DepartmentController()
-        {
-            this.repository = new DepartmentRepository(new eManagerContext());
-        }
+        //public DepartmentController()
+        //{
+        //    this.repository = new DepartmentRepository(new eManagerContext());
+        //}
 
         public DepartmentController(IDepartmentRepository repository)
         {
