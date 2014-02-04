@@ -11,7 +11,7 @@ namespace eManager.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201312270641047_InitialCreate"; }
+            get { return "201402041941034_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

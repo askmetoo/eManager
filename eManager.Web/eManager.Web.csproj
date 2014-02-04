@@ -226,21 +226,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\eManagerContext.cs" />
-    <Compile Include="Migrations\201312270641047_InitialCreate.cs" />
-    <Compile Include="Migrations\201312270641047_InitialCreate.Designer.cs">
-      <DependentUpon>201312270641047_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201312270740147_department_changes.cs" />
-    <Compile Include="Migrations\201312270740147_department_changes.Designer.cs">
-      <DependentUpon>201312270740147_department_changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401141812337_RowVersion.cs" />
-    <Compile Include="Migrations\201401141812337_RowVersion.Designer.cs">
-      <DependentUpon>201401141812337_RowVersion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401142047583_DepartmentUpdate.cs" />
-    <Compile Include="Migrations\201401142047583_DepartmentUpdate.Designer.cs">
-      <DependentUpon>201401142047583_DepartmentUpdate.cs</DependentUpon>
+    <Compile Include="Migrations\201402041941034_InitialCreate.cs" />
+    <Compile Include="Migrations\201402041941034_InitialCreate.Designer.cs">
+      <DependentUpon>201402041941034_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Constants.cs" />
@@ -445,17 +433,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201312270641047_InitialCreate.resx">
-      <DependentUpon>201312270641047_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201312270740147_department_changes.resx">
-      <DependentUpon>201312270740147_department_changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401141812337_RowVersion.resx">
-      <DependentUpon>201401141812337_RowVersion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401142047583_DepartmentUpdate.resx">
-      <DependentUpon>201401142047583_DepartmentUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201402041941034_InitialCreate.resx">
+      <DependentUpon>201402041941034_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

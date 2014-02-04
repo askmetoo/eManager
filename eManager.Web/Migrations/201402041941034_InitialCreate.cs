@@ -12,13 +12,28 @@ namespace eManager.Web.Migrations
                 c => new
                     {
                         EmployeeID = c.Int(nullable: false),
+                        DepartmentID = c.Int(nullable: false),
                         Name = c.String(),
                         HireDate = c.DateTime(),
-                        Department_DepartmentID = c.Int(),
                     })
                 .PrimaryKey(t => t.EmployeeID)
-                .ForeignKey("dbo.Department", t => t.Department_DepartmentID)
-                .Index(t => t.Department_DepartmentID);
+                .ForeignKey("dbo.Department", t => t.DepartmentID, cascadeDelete: true)
+                .Index(t => t.DepartmentID);
+            
+            CreateTable(
+                "dbo.Department",
+                c => new
+                    {
+                        DepartmentID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Category = c.String(),
+                        X = c.Double(nullable: false),
+                        Y = c.Double(nullable: false),
+                        Width = c.Double(nullable: false),
+                        Height = c.Double(nullable: false),
+                        RowVersion = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                    })
+                .PrimaryKey(t => t.DepartmentID);
             
             CreateTable(
                 "dbo.Dependent",
@@ -34,30 +49,16 @@ namespace eManager.Web.Migrations
                 .ForeignKey("dbo.Employee", t => t.EmployeeID, cascadeDelete: true)
                 .Index(t => t.EmployeeID);
             
-            CreateTable(
-                "dbo.Department",
-                c => new
-                    {
-                        DepartmentID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Category = c.String(),
-                        X = c.Double(nullable: false),
-                        Y = c.Double(nullable: false),
-                        Width = c.Double(nullable: false),
-                        Height = c.Double(nullable: false),
-                    })
-                .PrimaryKey(t => t.DepartmentID);
-            
         }
         
         public override void Down()
         {
             DropIndex("dbo.Dependent", new[] { "EmployeeID" });
-            DropIndex("dbo.Employee", new[] { "Department_DepartmentID" });
+            DropIndex("dbo.Employee", new[] { "DepartmentID" });
             DropForeignKey("dbo.Dependent", "EmployeeID", "dbo.Employee");
-            DropForeignKey("dbo.Employee", "Department_DepartmentID", "dbo.Department");
-            DropTable("dbo.Department");
+            DropForeignKey("dbo.Employee", "DepartmentID", "dbo.Department");
             DropTable("dbo.Dependent");
+            DropTable("dbo.Department");
             DropTable("dbo.Employee");
         }
     }

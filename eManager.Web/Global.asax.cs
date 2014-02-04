@@ -8,6 +8,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using eManager.Web.Infrastructure;
+using eManager.Web.Migrations;
+using System.Data.Entity.Migrations;
 
 namespace eManager.Web
 {
@@ -25,7 +27,8 @@ namespace eManager.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-            //Database.SetInitializer(new DropCreateDatabaseAlways<DepartmentDb>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<eManager.Web.Infrastructure.eManagerContext>());
+            //new DbMigrator(new Configuration()).Update();
         }
     }
 }
