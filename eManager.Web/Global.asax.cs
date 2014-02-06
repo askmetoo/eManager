@@ -28,7 +28,7 @@ namespace eManager.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             Database.SetInitializer(new DropCreateDatabaseAlways<eManager.Web.Infrastructure.eManagerContext>());
-            //new DbMigrator(new Configuration()).Update();
+            //new DbMigrator(new Configuration()).Update(); // Disable to unload sample data
         }
     }
 }

@@ -1,74 +1,118 @@
 ﻿<!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-<html >
-<html lang="en" class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - eManager ASP.NET MVC Application</title>
-        <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css">
-        <script src="~/Scripts/jquery-2.0.3.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
-        <script src="~/Scripts/knockout-2.3.0.js"></script>
-        <script src="~/Scripts/d3.v3.min.js"></script>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        <link rel="stylesheet" href="~/Content/foundation/normalize.css">
-        <!--<link rel="stylesheet" href="~/Content/foundation/foundation.css"> -->
-        <script src="~/Scripts/vendor/custom.modernizr.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("eManager (alpha)", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Departments", "Index", "Department")</li>
-                            <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
-                            <li>@Html.ActionLink("Dependents", "Index", "Dependent")</li>
-                            <li>@Html.ActionLink("DataMap", "SiteDataMap", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - eManager ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - eManager ASP.NET MVC Application</title>
+    <link rel="stylesheet" href="/Content/themes/base/jquery-ui.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/Scripts/jquery-2.0.3.js"></script>
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    <script src="~/Scripts/knockout-2.3.0.js"></script>
+    <script src="~/Scripts/d3.v3.min.js"></script>    
 
-        @*@Scripts.Render("~/bundles/jquery")*@
-        @RenderSection("scripts", required: false)
-        @*<script src="~/Scripts/vendor/jquery.js"></script>*@
-        <script src="~/Scripts/foundation.min.js"></script>
-        <script>
-            $(document).foundation();
-        </script>
-        <script>
-            $(function () {
-                $("[id*='Date']").datepicker();
-            });
-        </script>
-    </body>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <link rel="stylesheet" href="~/Content/foundation/normalize.css">
+    <script src="~/Scripts/vendor/custom.modernizr.js"></script>
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/themes/base/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="~/Content/themes/base/bootstrap-theme.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px; }
+        .sidebar-nav {
+            padding: 9px 0; }
+    </style>
+    <!-- Custom styles for this template -->
+    @*<link href="theme.css" rel="stylesheet">*@
+   <link href="~/Content/themes/base/custom.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-
+        -file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          @*<p class="navbar-brand">@Html.ActionLink("eManager (alpha)", "Index", "Home")</p>*@
+          <a class="navbar-brand" href="/Home/Index">eManager (alpha)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+            <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
+            <li>@Html.ActionLink("Dependents", "Index", "Dependent")</li>
+            <li>@Html.ActionLink("DataMap", "SiteDataMap", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div id="body" class="container theme-showcase" role="main">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div> <!-- /container -->
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-center" style="padding-top: 60px;">
+                <p>&copy; @DateTime.Now.Year - eManager ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @RenderSection("scripts", required: false)
+
+    @*<script src="~/Scripts/bootstrap.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $("[id*='Date']").datepicker();
+        });
+    </script>
+  </body>
 </html>

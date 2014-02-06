@@ -256,10 +256,12 @@
       <Link>AutoMapper.Net4.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\foundation\foundation.css" />
     <Content Include="Content\foundation\foundation.min.css" />
-    <Content Include="Content\foundation\foundation.mvc.css" />
-    <Content Include="Content\foundation\normalize.css" />
+    <Content Include="Content\themes\base\bootstrap-theme.css" />
+    <Content Include="Content\themes\base\bootstrap-theme.min.css" />
+    <Content Include="Content\themes\base\bootstrap.css" />
+    <Content Include="Content\themes\base\bootstrap.min.css" />
+    <Content Include="Content\themes\base\custom.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -324,27 +326,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Foundation_readme.md" />
+    <Content Include="Content\themes\base\bootstrap-theme.css.map" />
+    <Content Include="Content\themes\base\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="LICENSE.txt" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\d3.v3.js" />
     <Content Include="Scripts\d3.v3.min.js" />
     <Content Include="Scripts\foundation.min.js" />
-    <Content Include="Scripts\foundation\foundation.abide.js" />
-    <Content Include="Scripts\foundation\foundation.accordion.js" />
-    <Content Include="Scripts\foundation\foundation.alert.js" />
-    <Content Include="Scripts\foundation\foundation.clearing.js" />
-    <Content Include="Scripts\foundation\foundation.dropdown.js" />
-    <Content Include="Scripts\foundation\foundation.interchange.js" />
-    <Content Include="Scripts\foundation\foundation.joyride.js" />
-    <Content Include="Scripts\foundation\foundation.js" />
-    <Content Include="Scripts\foundation\foundation.magellan.js" />
-    <Content Include="Scripts\foundation\foundation.offcanvas.js" />
-    <Content Include="Scripts\foundation\foundation.orbit.js" />
-    <Content Include="Scripts\foundation\foundation.reveal.js" />
-    <Content Include="Scripts\foundation\foundation.tab.js" />
-    <Content Include="Scripts\foundation\foundation.tooltip.js" />
-    <Content Include="Scripts\foundation\foundation.topbar.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
@@ -420,11 +410,10 @@
     <Content Include="Views\Generic\Index.cshtml" />
     <Content Include="Views\Generic\Create.cshtml" />
     <Content Include="Views\Department\Layout.cshtml" />
-    <Content Include="Views\Shared\_Foundation.cshtml" />
-    <Content Include="Views\Home\Foundation_Index.cshtml" />
     <Content Include="Views\Employee\Detail.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Home\SiteDataMap.cshtml" />
+    <Content Include="Views\Shared\_Layout_backup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
