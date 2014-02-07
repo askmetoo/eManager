@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using eManager.Web.Models;
-using eManager.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using eManager.Web.ViewModels;
-using eManager.Web.Repository;
+using eManager.Web.DAL.Repository;
+using eManager.Web.DAL;
 
 namespace eManager.Web.Controllers
 {

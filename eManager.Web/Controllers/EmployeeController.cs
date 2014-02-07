@@ -1,5 +1,4 @@
 ﻿using eManager.Web.Models;
-using eManager.Web.Infrastructure;
 using eManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,16 +7,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {
     public class EmployeeController : Controller
     {
-        private IDepartmentDataSource _db;
+        private IEmployeeRepository repository;
 
-        public EmployeeController(IDepartmentDataSource db)
+        public EmployeeController(IEmployeeRepository repository)
         {
-            _db = db;
+            this.repository = repository;
         }
 
         public ActionResult Index(string sortOrder, int? page)
@@ -25,7 +25,7 @@ namespace eManager.Web.Controllers
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
             ViewBag.DateSort = sortOrder == "HireDate_asc" ? "HireDate_desc" : "HireDate_asc";
 
-            var employees = from e in _db.Employees
+            var employees = from e in repository.FindAll()
                             select e;
 
             switch (sortOrder)
@@ -65,15 +65,18 @@ namespace eManager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var department = _db.Departments.Single(d => d.DepartmentID == viewModel.DepartmentId);
+                //var department = repository.FindAll().Single(d => d.DepartmentID == viewModel.DepartmentId);
                 var employee = new Employee();
                 employee.EmployeeID = viewModel.EmployeeID;
                 employee.Name = viewModel.Name;
                 employee.HireDate = viewModel.HireDate;
-                department.Employees.Add(employee);
+                employee.DepartmentID = viewModel.DepartmentId;
+                //department.Employees.Add(employee);
 
-                _db.Save();
-                return RedirectToAction("Detail", "Department", new { department.DepartmentID });
+                repository.Add(employee);
+                repository.Save();
+
+                return RedirectToAction("Detail", "Department", new { viewModel.DepartmentId });
             }
             
             return View(viewModel);
@@ -81,14 +84,14 @@ namespace eManager.Web.Controllers
 
         public ActionResult Detail(int EmployeeID)
         {
-            var model = _db.Employees.Single(e => e.EmployeeID == EmployeeID);
+            var model = repository.FindAll().Single(e => e.EmployeeID == EmployeeID);
             return View(model);
         }
 
         [HttpGet]
         public ActionResult GetDependents(int EmployeeID)
         {
-            var dependentList = _db.Dependents.ToList().Where(e => e.EmployeeID == EmployeeID);
+            var dependentList = repository.FindDependents(EmployeeID);
 
             var dependents = dependentList.Select(d => new DependentViewModel()
             {
@@ -105,7 +108,7 @@ namespace eManager.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int EmployeeID)
         {
-            Employee employee = _db.Employees.Single(e => e.EmployeeID == EmployeeID);
+            Employee employee = repository.FindById(EmployeeID);
             if (employee == null)
                 return HttpNotFound();
 
@@ -118,14 +121,12 @@ namespace eManager.Web.Controllers
         {
             try
             {
-                eManagerContext db = new eManagerContext();
-
                 if (dependents != null || removed != null)
                 {
                     foreach (DependentViewModel dep in dependents)
                     {
-                        if (!_db.Dependents.Any(d => d.Name == dep.Name && d.Age == dep.Age))
-                            db.Dependents.Add(new Dependent()
+                        if (!repository.FindDependents(Employee.EmployeeID).Any(d => d.Name == dep.Name && d.Age == dep.Age))
+                            repository.AddDependent(new Dependent()
                             {
                                 EmployeeID = dep.EmployeeID,
                                 Name = dep.Name,
@@ -136,18 +137,17 @@ namespace eManager.Web.Controllers
 
                     foreach (DependentViewModel dep in removed)
                     {
-                        var deleteThis = db.Dependents.First(d => d.Name == dep.Name && d.Age == dep.Age);
+                        var deleteThis = repository.FindDependents(Employee.EmployeeID).First(d => d.Name == dep.Name && d.Age == dep.Age);
                         //context.Entry(deleteThis).State = System.Data.EntityState.Deleted;
-                        db.Dependents.Remove(deleteThis);
+                        repository.RemoveDependent(deleteThis);
                     }
 
-                    db.SaveChanges();
+                    repository.Save();
                 }
                 else if (ModelState.IsValid)
                 {
-                    
-                    db.Entry(Employee).State = EntityState.Modified;
-                    db.SaveChanges();
+                    repository.Update(Employee);
+                    repository.Save();
                 }
             }
             catch (DataException /* dex */)

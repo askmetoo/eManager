@@ -16,24 +16,25 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-using eManager.Web.Models;
-using eManager.Web.Infrastructure;
+using eManager.Web.DAL.Repository;
 using StructureMap;
-using eManager.Web.Repository;
-
-namespace eManager.Web.DependencyResolution {
-    public static class IoC {
-        public static IContainer Initialize() {
+namespace eManager.Web.DependencyResolution
+{
+    public static class IoC
+    {
+        public static IContainer Initialize()
+        {
             ObjectFactory.Initialize(x =>
-                        {
-                            x.Scan(scan =>
-                                    {
-                                        scan.TheCallingAssembly();
-                                        scan.WithDefaultConventions();
-                                    });
-                            x.For<IDepartmentDataSource>().HttpContextScoped().Use<eManagerContext>();
-                            x.For<IDepartmentRepository>().HttpContextScoped().Use<DepartmentRepository>();
-                        });
+            {
+                x.Scan(scan =>
+                {
+                    scan.TheCallingAssembly();
+                    scan.WithDefaultConventions();
+                });
+                x.For<IDepartmentRepository>().HttpContextScoped().Use<DepartmentRepository>();
+                x.For<IEmployeeRepository>().HttpContextScoped().Use<EmployeeRepository>();
+                x.For<IDependentRepository>().HttpContextScoped().Use<DependentRepository>();
+            });
             return ObjectFactory.Container;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using eManager.Web.Models;
-using eManager.Web.Infrastructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,25 +7,23 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using eManager.Web.ViewModels;
+using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {
     public class DependentController : Controller
     {
-        private IDepartmentDataSource _db;
+        private IDependentRepository repository;
 
-        public DependentController(IDepartmentDataSource db)
+        public DependentController(IDependentRepository repository)
         {
-            _db = db;
+            this.repository = repository;
         }
 
         [HttpGet]
         public ActionResult GetDependents()
         {
-            //var dependents = _db.Dependents;
-            //return Json(dependents, JsonRequestBehavior.AllowGet);
-
-            var dependentList = _db.Dependents.ToList();
+            var dependentList = repository.FindAll();
             var dependents = dependentList.Select(d => new DependentViewModel()
             {
                 DependentID = d.DependentID,
@@ -47,22 +44,22 @@ namespace eManager.Web.Controllers
         [HttpPost]
         public ActionResult Index([FromJson] IEnumerable<Dependent> dependents, [FromJson] IEnumerable<Dependent> removed)
         {
-            eManagerContext context = new eManagerContext();
+            //eManagerContext context = new eManagerContext();
 
             foreach (Dependent dep in dependents)
             {
-                if (!_db.Dependents.Any(d => d.Name == dep.Name && d.Age == dep.Age))
-                    context.Dependents.Add( new Dependent() { Name = dep.Name, Age = dep.Age });
+                if (!repository.FindAll().Any(d => d.Name == dep.Name && d.Age == dep.Age))
+                    repository.Add( new Dependent() { Name = dep.Name, Age = dep.Age });
             }
 
             foreach (Dependent dep in removed)
             {
-                var deleteThis = context.Dependents.First(d => d.Name == dep.Name && d.Age == dep.Age);
+                var deleteThis = repository.FindAll().First(d => d.Name == dep.Name && d.Age == dep.Age);
                 //context.Entry(deleteThis).State = System.Data.EntityState.Deleted;
-                context.Dependents.Remove(deleteThis);
+                repository.Remove(deleteThis);
             }
 
-            context.SaveChanges();
+            repository.Save();
 
             return View("Index", dependents);
         }

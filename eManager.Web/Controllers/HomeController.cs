@@ -1,11 +1,10 @@
-﻿using eManager.Web.Infrastructure;
+﻿using eManager.Web.DAL;
 using eManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace eManager.Web.Controllers
 {
@@ -13,14 +12,12 @@ namespace eManager.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
@@ -38,7 +35,7 @@ namespace eManager.Web.Controllers
             var viewModel = new SiteDataMapViewModel();
 
             viewModel.Departments = db.Departments.ToList();
-                //.Include(e => e.Employees.Select(d => d.Department));
+            //.Include(e => e.Employees.Select(d => d.Department));
 
             if (departmentId != null)
             {
@@ -57,5 +54,6 @@ namespace eManager.Web.Controllers
 
             return View(viewModel);
         }
+
     }
 }
