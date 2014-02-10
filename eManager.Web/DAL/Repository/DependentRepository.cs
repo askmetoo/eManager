@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace eManager.Web.DAL.Repository
@@ -38,7 +39,7 @@ namespace eManager.Web.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<Dependent> Find(System.Linq.Expressions.Expression<Func<Dependent>> predicate)
+        public IQueryable<Dependent> Find(Expression<Func<Dependent, bool>> predicate)
         {
             throw new NotImplementedException();
         }

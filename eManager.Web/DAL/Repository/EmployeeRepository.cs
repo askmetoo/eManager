@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace eManager.Web.DAL.Repository
@@ -37,7 +38,7 @@ namespace eManager.Web.DAL.Repository
             return context.Employees.Single(e => e.EmployeeID == id);
         }
 
-        public IQueryable<Employee> Find(System.Linq.Expressions.Expression<Func<Employee>> predicate)
+        public IQueryable<Employee> Find(Expression<Func<Employee, bool>> predicate)
         {
             throw new NotImplementedException();
         }

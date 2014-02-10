@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace eManager.Web.DAL.Repository
@@ -38,9 +39,9 @@ namespace eManager.Web.DAL.Repository
             return context.Departments.Single(d => d.DepartmentID == id);
         }
 
-        public IQueryable<Department> Find(System.Linq.Expressions.Expression<Func<Department>> predicate)
+        public IQueryable<Department> Find(Expression<Func<Department, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return context.Departments.Where(predicate);
         }
 
         public IQueryable<Department> FindAll()

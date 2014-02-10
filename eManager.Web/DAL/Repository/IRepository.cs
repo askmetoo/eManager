@@ -13,7 +13,7 @@ namespace eManager.Web.DAL.Repository
         void Remove(T removeEntity);
         void Update(T updateEntity);
         T FindById(int id);
-        IQueryable<T> Find(Expression<Func<T>> predicate);
+        IQueryable<T> Find(Expression<Func<T, bool>> predicate);
         IQueryable<T> FindAll();
         void Save();
     }

@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 using eManager.Web.ViewModels;
 using eManager.Web.DAL.Repository;
 using eManager.Web.DAL;
+using System.Linq.Expressions;
 
 namespace eManager.Web.Controllers
 {
@@ -30,6 +31,8 @@ namespace eManager.Web.Controllers
 
         public ActionResult Index()
         {
+            //Expression<Func<Department, bool>> condition = x => x.Name == "Engineering";
+            //return View(repository.Find(condition));
             return View(repository.FindAll());
         }
 
