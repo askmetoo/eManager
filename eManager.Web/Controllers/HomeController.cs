@@ -2,6 +2,7 @@
 using eManager.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,6 +54,27 @@ namespace eManager.Web.Controllers
             }
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Attachments()
+        {
+            var files = Directory.EnumerateFiles(Server.MapPath("~/attachments"));
+            return View(files);
+        }
+
+        [HttpPost]
+        public ActionResult Attachments(HttpPostedFileBase file)
+        {
+
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
+                file.SaveAs(path);
+            }
+
+            return RedirectToAction("Attachments");
         }
 
     }
