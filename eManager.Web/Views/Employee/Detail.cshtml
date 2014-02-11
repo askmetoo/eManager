@@ -29,6 +29,10 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.HireDate)
     </div>
+    <div class="display-field">
+        <p> hellooo</p>
+        @Html.Raw(HttpUtility.HtmlDecode(Model.Profile))
+    </div>
 </fieldset>
 
 <p>Total @Model.Dependents.Count() dependent(s)</p>

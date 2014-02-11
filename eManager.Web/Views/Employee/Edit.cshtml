@@ -38,6 +38,9 @@
             @Html.EditorFor(model => model.HireDate)
             @Html.ValidationMessageFor(model => model.HireDate)
         </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Profile , new { @class = "ckeditor", @id = "profile" })
+        </div>
 
         <p>
             <input type="submit" value="Save Employee" />
@@ -56,7 +59,7 @@
         <td>Name: <input data-bind="value: Name"/></td>
         <td>Age: <input data-bind="value: Age"/></td>
         <td>Relation: 
-            <select data-bind="value: Relation"">
+            <select data-bind="value: Relation">
                 <option value="0">Parents</option>
                 <option value="1">Spouce</option>
                 <option value="2">Children</option>
