@@ -76,6 +76,19 @@ namespace eManager.Web.Controllers
 
             return RedirectToAction("Attachments");
         }
+        public ActionResult GetEvents()
+        {
+            var events = new[]
+            {     
+                new { title = "Here goes the event description", start = "2014-02-11 14:08:00", end = "2014-02-12 16:50:00", editable = false , url = "http://google.com/" },
+                new { title = "Final Exams", start = "2014-02-12T15:09:00Z", end = "2014-02-11T17:10:00Z", editable = false , url = "http://google.com/" },
+                new { title = "Cartoon Day", start = "2014-02-13T16:10:00Z", end = "2014-02-11T18:11:00Z", editable = false , url = "http://google.com/" },
+                new { title = "Event 4", start = "2014-02-14T17:11:00Z", end = "2014-02-11T19:12:00Z", editable = false , url = "http://google.com/" },
+                new { title = "Event 5", start = "2014-02-15T18:12:00Z", end = "2014-02-11T20:13:00Z", editable = false, url = "http://google.com/" },         
+                new { title = "Event 6", start = "2014-02-16T19:13:00Z", end = "2014-02-11T21:14:00Z", editable = false, url = "http://google.com/" }
+            };
 
+            return Json(events, JsonRequestBehavior.AllowGet);
+        }
     }
 }

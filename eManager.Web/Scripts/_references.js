@@ -210,3 +210,5 @@
 /// <reference path="ckeditor/plugins/specialchar/dialogs/lang/zh.js" />
 /// <reference path="ckeditor/samples/plugins/dialog/assets/my_dialog.js" />
 /// <reference path="ckeditor/samples/plugins/htmlwriter/assets/outputforflash/swfobject.js" />
+/// <reference path="fullcalendar/fullcalendar.js" />
+/// <reference path="fullcalendar/gcal.js" />
