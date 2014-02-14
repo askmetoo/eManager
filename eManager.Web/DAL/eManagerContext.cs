@@ -13,6 +13,7 @@ namespace eManager.Web.DAL
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Dependent> Dependents { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         public eManagerContext() : base("DefaultConnection")
         {

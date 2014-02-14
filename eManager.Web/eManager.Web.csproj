@@ -195,6 +195,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DependentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\eManagerContext.cs" />
     <Compile Include="DAL\eManagerInitializer.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Dependent.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="ViewModels\DepartmentLayout.cs" />
     <Compile Include="ViewModels\DependentViewModel.cs" />
     <Compile Include="ViewModels\EditDepartmentViewModel.cs" />
+    <Compile Include="ViewModels\EventCalendarViewModel.cs" />
     <Compile Include="ViewModels\SiteDataMapViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -662,6 +665,11 @@
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\Attachments.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

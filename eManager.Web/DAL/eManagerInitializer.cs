@@ -55,6 +55,28 @@ namespace eManager.Web.DAL
 
             dependents.ForEach(s => context.Dependents.Add(s));
             context.SaveChanges();
+
+            var events = new List<Event>
+            {
+                new Event { Title = "Safety Drill", StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(1), IsActive = true
+                },
+                new Event { Title = "Security Awareness", StartDate = DateTime.Now.AddDays(1),
+                    EndDate = DateTime.Now.AddDays(2), IsActive = true
+                },
+                new Event { Title = "Executive Visit", StartDate = DateTime.Now.AddDays(2),
+                    EndDate = DateTime.Now.AddDays(3), IsActive = true
+                },
+                new Event { Title = "Maintenance", StartDate = DateTime.Now.AddDays(3),
+                    EndDate = DateTime.Now.AddDays(4), IsActive = true
+                },
+                new Event { Title = "Holidays", StartDate = DateTime.Now.AddDays(4),
+                    EndDate = DateTime.Now.AddDays(5), IsActive = true
+                }
+            };
+
+            events.ForEach(s => context.Events.Add(s));
+            context.SaveChanges();
         }
     }
 }
