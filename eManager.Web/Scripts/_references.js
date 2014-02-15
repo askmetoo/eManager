@@ -212,3 +212,4 @@
 /// <reference path="ckeditor/samples/plugins/htmlwriter/assets/outputforflash/swfobject.js" />
 /// <reference path="fullcalendar/fullcalendar.js" />
 /// <reference path="fullcalendar/gcal.js" />
+/// <reference path="dcodes/dc_tabs.js" />

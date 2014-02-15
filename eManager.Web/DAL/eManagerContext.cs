@@ -14,6 +14,7 @@ namespace eManager.Web.DAL
         public DbSet<Department> Departments { get; set; }
         public DbSet<Dependent> Dependents { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Service> Services { get; set; }
 
         public eManagerContext() : base("DefaultConnection")
         {
