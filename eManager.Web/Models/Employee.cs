@@ -14,6 +14,7 @@ namespace eManager.Web.Models
         public virtual int EmployeeID { get; set; }
         public virtual int DepartmentID { get; set; }
         public virtual string Name { get; set; }
+        public virtual DateTime? BirthDate { get; set; }
         public virtual DateTime? HireDate { get; set; }
         [AllowHtml]
         public virtual string Profile { get; set; }

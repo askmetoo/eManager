@@ -17,8 +17,6 @@ using System.Linq;
             
         protected override void Seed(eManagerContext context)
         {
-
-
             var departments = new List<Department>
             {
                 new Department() { Name = "Engineering", X = 20, Y = 30, Width = 120, Height = 60 },
@@ -28,7 +26,7 @@ using System.Linq;
                 new Department() { Name = "Human Resource", X = 300, Y = 200, Width = 150, Height = 60 }
             };
 
-            departments.ForEach(s => context.Departments.AddOrUpdate(s));
+            departments.ForEach(s => context.Departments.AddOrUpdate(d => d.Name, s));
             context.SaveChanges();
 
             var employees = new List<Employee>
@@ -43,7 +41,7 @@ using System.Linq;
                     DepartmentID = departments.Single(d => d.Name == "Shipping").DepartmentID }
             };
 
-            employees.ForEach(s => context.Employees.AddOrUpdate(s));
+            employees.ForEach(s => context.Employees.AddOrUpdate(e => e.EmployeeID, s));
             context.SaveChanges();
 
             var dependents = new List<Dependent>
@@ -62,7 +60,7 @@ using System.Linq;
                 }
             };
 
-            dependents.ForEach(s => context.Dependents.AddOrUpdate(s));
+            dependents.ForEach(s => context.Dependents.AddOrUpdate(d => d.Name, s));
             context.SaveChanges();
 
             var events = new List<Event>
@@ -84,7 +82,7 @@ using System.Linq;
                 }
             };
 
-            events.ForEach(s => context.Events.AddOrUpdate(s));
+            events.ForEach(s => context.Events.AddOrUpdate(e => e.Title, s));
             context.SaveChanges();
         }
     }

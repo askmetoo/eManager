@@ -19,32 +19,11 @@ namespace eManager.Web.DAL
         public eManagerContext() : base("DefaultConnection")
         {
             //this.Configuration.LazyLoadingEnabled = false;
-            //Database.SetInitializer<eManagerContext>(new DropCreateDatabaseAlways<eManagerContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
-        //IQueryable<Dependent> IDepartmentDataSource.Dependents 
-        //{
-        //    get { return Dependents; }
-        //}
-
-        //IQueryable<Employee> IDepartmentDataSource.Employees
-        //{
-        //    get { return Employees; }
-        //}
-
-        //IQueryable<Department> IDepartmentDataSource.Departments
-        //{
-        //    get { return Departments; }
-        //}
-
-        //void IDepartmentDataSource.Save()
-        //{
-        //    SaveChanges();
-        //}
     }
 }
