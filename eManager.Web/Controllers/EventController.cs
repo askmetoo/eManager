@@ -9,27 +9,38 @@ using System.Web.Mvc;
 using eManager.Web.Models;
 using eManager.Web.DAL;
 using eManager.Web.ViewModels;
+using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {
     public class EventController : Controller
     {
+        //public class DepartmentController : GenericController<Department>
+        //public EventController(IDepartmentRepository repository) : base(repository) { }
+
         private eManagerContext db = new eManagerContext();
+        private IEventRepository repository;
+
+        public EventController(IEventRepository repository)
+        {
+            this.repository = repository;
+        }
 
         // GET: /Event/
         public ActionResult Index()
         {
-            return View(db.Events.ToList());
+            int total = repository.FindAll().Count();
+            return View(repository.FindAll());
         }
 
         // GET: /Event/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = repository.FindById(id);
             if (@event == null)
             {
                 return HttpNotFound();

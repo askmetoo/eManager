@@ -17,6 +17,7 @@
 
 
 using eManager.Web.DAL.Repository;
+using eManager.Web.Models;
 using StructureMap;
 namespace eManager.Web.DependencyResolution
 {
@@ -34,6 +35,7 @@ namespace eManager.Web.DependencyResolution
                 x.For<IDepartmentRepository>().HttpContextScoped().Use<DepartmentRepository>();
                 x.For<IEmployeeRepository>().HttpContextScoped().Use<EmployeeRepository>();
                 x.For<IDependentRepository>().HttpContextScoped().Use<DependentRepository>();
+                x.For<IEventRepository>().HttpContextScoped().Use<EventRepository>();
             });
             return ObjectFactory.Container;
         }

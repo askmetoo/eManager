@@ -196,6 +196,7 @@
     <Compile Include="Controllers\DependentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DAL\eManagerContext.cs" />
@@ -203,9 +204,13 @@
     <Compile Include="DAL\eManagerMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityContext.cs" />
     <Compile Include="DAL\IdentityMigrations\Configuration.cs" />
+    <Compile Include="DAL\Repository\EventRepository.cs" />
+    <Compile Include="DAL\Repository\GenericRepository.cs" />
     <Compile Include="DAL\Repository\EmployeeRepository.cs" />
     <Compile Include="DAL\Repository\DependentRepository.cs" />
     <Compile Include="DAL\Repository\DepartmentRepository.cs" />
+    <Compile Include="DAL\Repository\IServiceRepository.cs" />
+    <Compile Include="DAL\Repository\IEventRepository.cs" />
     <Compile Include="DAL\Repository\IEmployeeRepository.cs" />
     <Compile Include="DAL\Repository\IDependentRepository.cs" />
     <Compile Include="DAL\Repository\IDepartmentRepository.cs" />
