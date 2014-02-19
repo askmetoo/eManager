@@ -13,142 +13,26 @@ using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {
-    public class EventController : Controller
+    public class EventController : GenericController<Event>
     {
-        //public class DepartmentController : GenericController<Department>
-        //public EventController(IDepartmentRepository repository) : base(repository) { }
-
-        private eManagerContext db = new eManagerContext();
-        private IEventRepository repository;
-
-        public EventController(IEventRepository repository)
+        IEventRepository repository;
+        public EventController(IEventRepository repository) : base(repository) 
         {
             this.repository = repository;
-        }
-
-        // GET: /Event/
-        public ActionResult Index()
-        {
-            int total = repository.FindAll().Count();
-            return View(repository.FindAll());
-        }
-
-        // GET: /Event/Details/5
-        public ActionResult Details(int id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = repository.FindById(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // GET: /Event/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: /Event/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="EventID,Title,StartDate,EndDate,Description,IsActive")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Events.Add(@event);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(@event);
-        }
-
-        // GET: /Event/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: /Event/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="EventID,Title,StartDate,EndDate,Description,IsActive")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(@event);
-        }
-
-        // GET: /Event/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: /Event/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         public ActionResult GetEvents()
         {
             List<EventCalendarViewModel> events = new List<EventCalendarViewModel>();
 
-            foreach (var e in db.Events)
+            foreach (var e in this.repository.FindAll())
             {
                 events.Add(
                     new EventCalendarViewModel
                     {
                         EventID = e.EventID,
                         Title = e.Title,
-                        StartDate =  e.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                        StartDate = e.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
                         EndDate = e.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),
                         IsEditable = false
                     }

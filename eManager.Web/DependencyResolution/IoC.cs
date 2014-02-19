@@ -36,6 +36,7 @@ namespace eManager.Web.DependencyResolution
                 x.For<IEmployeeRepository>().HttpContextScoped().Use<EmployeeRepository>();
                 x.For<IDependentRepository>().HttpContextScoped().Use<DependentRepository>();
                 x.For<IEventRepository>().HttpContextScoped().Use<EventRepository>();
+                x.For<IServiceRepository>().HttpContextScoped().Use<ServiceRepository>();
             });
             return ObjectFactory.Container;
         }

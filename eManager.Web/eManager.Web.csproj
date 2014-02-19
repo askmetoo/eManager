@@ -204,6 +204,7 @@
     <Compile Include="DAL\eManagerMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityContext.cs" />
     <Compile Include="DAL\IdentityMigrations\Configuration.cs" />
+    <Compile Include="DAL\Repository\ServiceRepository.cs" />
     <Compile Include="DAL\Repository\EventRepository.cs" />
     <Compile Include="DAL\Repository\GenericRepository.cs" />
     <Compile Include="DAL\Repository\EmployeeRepository.cs" />
