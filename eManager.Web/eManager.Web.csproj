@@ -226,6 +226,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\ExtensionsLibrary.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Dependent.cs" />
@@ -685,6 +686,7 @@
     <Content Include="Views\Service\Details.cshtml" />
     <Content Include="Views\Service\Edit.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Event\GenericTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

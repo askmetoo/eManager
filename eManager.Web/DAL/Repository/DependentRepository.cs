@@ -36,7 +36,7 @@ namespace eManager.Web.DAL.Repository
 
         public Dependent FindById(int id)
         {
-            throw new NotImplementedException();
+            return context.Dependents.Single(d => d.DependentID == id);
         }
 
         public IQueryable<Dependent> Find(Expression<Func<Dependent, bool>> predicate)

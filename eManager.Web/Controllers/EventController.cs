@@ -41,5 +41,25 @@ namespace eManager.Web.Controllers
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult GenericTest(int id)
+        {
+            var temp = this.repository.FindById(id);
+            var t = temp.GetType().GetProperties();
+            foreach (var property in t)
+            {
+                string tt = property.Name;
+                Console.WriteLine(tt);
+            }
+            return View(temp);
+        }
+
+        [HttpPost]
+        public ActionResult GenericTest(Event entity)
+        {
+            Event e = entity;
+            return View(e);
+        }
     }
 }
