@@ -25,7 +25,14 @@ namespace eManager.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Scripts/multiselect/css/multi-select.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-dependents").Include(
+                        "~/Scripts/knockout-3.0.0.js",
+                        "~/Scripts/d3.v3.min.js",
+                        "~/Scripts/CKEditor/ckeditor.js",
+                        "~/Scripts/multiselect/js/jquery.multi-select.js"));
         }
     }
 }
