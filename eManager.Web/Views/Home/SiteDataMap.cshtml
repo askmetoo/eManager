@@ -75,21 +75,52 @@
 }
 </table>
 
-<select id='callbacks' multiple='multiple'>
-    <option value='elem_1'>elem 1</option>
-    <option value='elem_2'>elem 2</option>
-    <option value='elem_3'>elem 3</option>
-    <option value='elem_4'>elem 4</option>
-    <option value='elem_5'>elem 5</option>
+<h4> Departments</h4>
+<select id='deptlist' multiple='multiple'>
+    @foreach (var department in Model.Departments)
+    {
+        <option value=@department.DepartmentID>@department.Name</option>
+    }
 </select>
 
+<h4> Employees</h4>
+<select id='emplist' multiple='multiple'></select>
+
 <script type="text/javascript">
-    $('#callbacks').multiSelect({
-        afterSelect: function (values) {
-            alert("Select value: " + values);
+
+    function reloadList() {
+        $('#emplist').multiSelect('destroy');
+        $('#emplist').multiSelect();
+    }
+
+    function manageItems(operation, selectedValue) {
+        $.getJSON("/Home/GetEmployees?DepartmentID=" + selectedValue,
+            function (employeeList) {
+                $.each(employeeList, function (i, employee) {
+                    if (operation == 'add') {
+                        $("#emplist").append('<option value="' + employee.Name + '">'
+                            + employee.Name + '</option>');
+                    }
+                    else if (operation == 'remove') {
+                        $("#emplist option[value='" + employee.Name + "']").remove();
+                    }
+                    else
+                        alert('invalid operation')
+
+                    reloadList();
+                });
+            });
+    }
+
+    $('#deptlist').multiSelect({
+        afterSelect: function (selectedValue) {
+            manageItems('add', selectedValue)
         },
-        afterDeselect: function (values) {
-            alert("Deselect value: " + values);
+        afterDeselect: function (selectedValue) {
+            manageItems('remove', selectedValue)
         }
     });
+
+    $('#emplist').multiSelect();
+
 </script>

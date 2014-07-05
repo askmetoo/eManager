@@ -57,6 +57,18 @@ namespace eManager.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetEmployees(int DepartmentID)
+        {
+            eManagerContext db = new eManagerContext();
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var employees = db.Employees.Where(
+                d => d.DepartmentID == DepartmentID).ToList();
+
+            return Json(employees, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult Attachments()
         {
             var files = Directory.EnumerateFiles(Server.MapPath("~/attachments"));
