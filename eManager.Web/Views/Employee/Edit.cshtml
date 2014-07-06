@@ -54,11 +54,12 @@
     <tbody data-bind="template: { name: 'dependentRowTemplate', foreach: dependents }"></tbody>
 </table>
  
-<script type="text/html" id="dependents">
+<script type="text/html" id="dependentRowTemplate">
     <tr>
-        <td>Name: <input data-bind="value: Name"/></td>
-        <td>Age: <input data-bind="value: Age"/></td>
-        <td>Relation: 
+        <td>Name: <input data-bind="value: Name" /></td>
+        <td>Age: <input data-bind="value: Age" /></td>
+        <td>
+            Relation:
             <select data-bind="value: Relation">
                 <option value="0">Parents</option>
                 <option value="1">Spouce</option>
