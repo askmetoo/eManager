@@ -691,6 +691,7 @@
     <Content Include="Views\Home\SiteDataMap.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Department\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

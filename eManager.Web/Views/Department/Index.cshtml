@@ -1,20 +1,45 @@
 ﻿@model IEnumerable<eManager.Web.Models.Department>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Departments</li>
+</ol>
 
 <p>
-    @Html.ActionLink("Create Department", "Create", "Department")
+    @Html.ActionLink("Create Department", "Create", "Department", null, new { @class = "btn btn-primary" })
 </p>
 
-<ul>
+<table class="table table-hover">
+    <tr>
+        <th >
+            @Html.ActionLink("Title", "index")
+        </th>
+        <th>
+            @Html.ActionLink("Employees", "index")
+        </th>
+        <th></th>
+    </tr>
+
     @foreach (var department in Model)
     {
-        <li>@Html.ActionLink(department.Name, "Detail", "Department", new { department.DepartmentID }, null) -
-            @Html.ActionLink("Edit", "Edit", "Department", new { department.DepartmentID }, null)
-        </li>
+        <tr>
+            <td>
+                @Html.DisplayFor(d => department.Name)
+            </td>
+            <td>
+                @department.Employees.Count
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit",
+                    new { DepartmentID = department.DepartmentID },
+                    new { @class = "btn btn-default btn-xs" }) |
+                @Html.ActionLink("Detail", "Detail",
+                    new { DepartmentID = department.DepartmentID },
+                    new { @class = "btn btn-default btn-xs" }) |
+                @Html.ActionLink("Delete", "Delete",
+                    new { DepartmentID = department.DepartmentID },
+                    new { @class = "btn btn-default btn-xs" })
+            </td>
+        </tr>
     }
-</ul>
+</table>

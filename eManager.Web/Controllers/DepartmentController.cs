@@ -19,11 +19,6 @@ namespace eManager.Web.Controllers
     {
         private IDepartmentRepository repository;
 
-        //public DepartmentController()
-        //{
-        //    this.repository = new DepartmentRepository(new eManagerContext());
-        //}
-
         public DepartmentController(IDepartmentRepository repository)
         {
             this.repository = repository;
@@ -31,9 +26,7 @@ namespace eManager.Web.Controllers
 
         public ActionResult Index()
         {
-            //Expression<Func<Department, bool>> condition = x => x.Name == "Engineering";
-            //return View(repository.Find(condition));
-            return View(repository.FindAll());
+            return View(repository.FindAll().ToList());
         }
 
         public ActionResult Detail(int DepartmentID)
@@ -61,12 +54,6 @@ namespace eManager.Web.Controllers
                 repository.Add(department);
                 repository.Save();
 
-                //var department = new eManagerContext();
-                //department.Departments.Add(
-                //new Department() { Name = viewModel.Name });
-
-                //department.SaveChanges();
-
                 return RedirectToAction("index", "Department");
             }
 
@@ -76,17 +63,12 @@ namespace eManager.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int DepartmentID)
         {
-            //var model = db.Departments.Single(d => d.DepartmentID == DepartmentID);
             var model = repository.FindById(DepartmentID);
             var viewModel = new EditDepartmentViewModel();
-            //var viewModel = new EditDepartmentViewModel() { 
-            //    DepartmentID = model.DepartmentID,
-            //    Name = model.Name,
-            //    RowVersion = model.RowVersion
-            //    //Categories = new SelectList(Constants.DepartmentCategory.ToList(), "Key", "Value", model.Category)
-            //};
+
             Mapper.CreateMap<Department, EditDepartmentViewModel>();
             Mapper.Map<Department, EditDepartmentViewModel>(model, viewModel);
+
             return View(viewModel);
         }
 
@@ -94,8 +76,6 @@ namespace eManager.Web.Controllers
         public ActionResult Edit(//[Bind(Include = "DepartmentID, Name, RowVersion")]
             EditDepartmentViewModel viewModel, int DepartmentID)
         {
-            //var db = new DepartmentDb();
-            //Department department = db.Departments.Single(x => x.DepartmentID == DepartmentID);
             Department department = new Department();
             try
             {
@@ -103,10 +83,9 @@ namespace eManager.Web.Controllers
                 Mapper.Map<EditDepartmentViewModel, Department>(viewModel, department);
                 if (ModelState.IsValid)
                 {
-                    //db.Entry(department).State = EntityState.Modified;
-                    //db.SaveChanges();
                     repository.Update(department);
                     repository.Save();
+
                     return RedirectToAction("index", "Department");
                 }
             }
@@ -128,11 +107,6 @@ namespace eManager.Web.Controllers
             }
 
             return View(viewModel);
-            
-            //var department = context.Departments.Single(d => d.DepartmentID == DepartmentID);
-            //department.Name = viewModel.Name;
-            //department.Category = viewModel.CategoryCode;
-            //context.SaveChanges();
         }
 
         [HttpGet]

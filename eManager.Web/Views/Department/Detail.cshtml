@@ -1,39 +1,55 @@
 ﻿@model eManager.Web.Models.Department
 
-@{
-    ViewBag.Title = "Detail";
-}
-
-<h2>@Model.Name Department Detail</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Department", "Index", "Department")</li>
+    <li class="active">Detail - @Model.Name</li>
+</ol>
 
 <p>
-    @Html.ActionLink("Create Employees", "Create", "Employee", new { departmentId = Model.DepartmentID}, null)
+    @Html.ActionLink("Create Employees", "Create", "Employee", new { departmentId = Model.DepartmentID }, new { @class = "btn btn-primary" })
 </p>
 
-<fieldset>
-    <legend>Details</legend>
+<h4>Department</h4>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-</fieldset>
-<table>
+<table class="table table-bordered">
     <tr>
-        <th>Id</th>
-        <th>Name</th>
+        <th>Title</th>
+        <th>Value</th>
     </tr>
-    @foreach(var employee in Model.Employees)
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.DepartmentID)</td>
+        <td>@Html.DisplayFor(model => model.DepartmentID)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Name)</td>
+        <td>@Html.DisplayFor(model => model.Name)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Category)</td>
+        <td>@Html.DisplayFor(model => model.Category)</td>
+    </tr>
+</table>
+
+<h4>Employees</h4>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Hire Date</th>
+
+    </tr>
+    @foreach (var employee in Model.Employees)
     {
         <tr>
             <td>@employee.EmployeeID</td>
             <td>@employee.Name</td>
+            <td>@employee.HireDate</td>
+
         </tr>
     }
 </table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.DepartmentID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>
