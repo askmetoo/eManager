@@ -55,9 +55,9 @@ namespace eManager.Web.Controllers
         }
 
         [HttpGet]
-        public override ActionResult Edit(int DepartmentID)
+        public override ActionResult Edit(int Id)
         {
-            var model = repository.FindById(DepartmentID);
+            var model = repository.FindById(Id);
             var viewModel = new EditDepartmentViewModel();
 
             Mapper.CreateMap<Department, EditDepartmentViewModel>();
@@ -72,7 +72,7 @@ namespace eManager.Web.Controllers
 
         [HttpPost]
         public ActionResult Edit(//[Bind(Include = "DepartmentID, Name, RowVersion")]
-            EditDepartmentViewModel viewModel, int DepartmentID)
+            EditDepartmentViewModel viewModel, int Id)
         {
             Department department = new Department();
             try

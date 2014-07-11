@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         @Html.ActionLink("Select", "SiteDataMap",
-                            new { departmentId = item.DepartmentID },
+                            new { departmentId = item.Id },
                             new { @class = "btn btn-default btn-xs" })                  
                     </td>
                     <td>@item.Name</td>
@@ -77,7 +77,7 @@
         <select id='deptlist' multiple='multiple'>
             @foreach (var department in Model.Departments)
             {
-                <option value=@department.DepartmentID>@department.Name</option>
+                <option value=@department.Id>@department.Name</option>
             }
         </select>
 

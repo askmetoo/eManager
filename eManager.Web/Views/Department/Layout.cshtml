@@ -1,6 +1,8 @@
-﻿@{
-    ViewBag.Title = "Department Layout";
-}
+﻿<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Department", "Index", "Department")</li>
+    <li class="active">Layout</li>
+</ol>
 
 <style type='text/css'>
     svg {
@@ -22,9 +24,9 @@
     }
 </style>
 
-<h2>Department Layout</h2> 
+<h4>Department Layout</h4> 
 
-<div style="height:auto" id="container"/>
+<div style="height:auto" id="container"></div>
 
 <script type='text/javascript'>
     $(document).ready(function () {
@@ -58,7 +60,7 @@
             .attr("y", function (d) { return d.Y; })
             .attr("width", function (d) { return d.Width; })
             .attr("height", function (d) { return d.Height; })
-            .style("fill", '#ADD8E6')
+            .style("fill", '#CEE3F6')
 
         var text = svg.selectAll("foreignObject")
             .data(jsonData)
@@ -71,11 +73,15 @@
             .attr('width', 100)
             .attr('height', 100)
             .attr("font-family", "sans-serif")
-            .attr("color", "white")
-            .attr("font-size", "12px")
+            .attr("color", "#FFFF")
+            .attr("font-size", "10px")
             .attr("font-weight", "bold")
             .append("xhtml:div")
-            .html(function (d, i) { return "<div><a href=\Detail/" + d.Id + "\>" + d.Name + " - " + d.EmployeeCount + "</a></div>"; });
+            .html(function (d, i) {
+                return "<div><a href=\Details/" + d.Id +
+                    "\><font color='black'>" + d.Name +
+                    " - " + d.EmployeeCount + "</font></a></div>";
+            });
 
         svg.append("g")
             .attr("class", "x axis")
