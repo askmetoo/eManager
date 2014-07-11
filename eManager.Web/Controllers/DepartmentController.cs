@@ -15,32 +15,26 @@ using System.Linq.Expressions;
 
 namespace eManager.Web.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : GenericController<Department>
     {
         private IDepartmentRepository repository;
 
         public DepartmentController(IDepartmentRepository repository)
+            : base(repository)
         {
             this.repository = repository;
         }
 
-        public ActionResult Index()
-        {
-            return View(repository.FindAll().ToList());
-        }
-
-        public ActionResult Detail(int DepartmentID)
-        {
-            var model = repository.FindById(DepartmentID);
-            return View(model);
-        }
-
         [HttpGet]
-        public ActionResult Create()
+        public override ActionResult Create()
         {
             var model = new CreateDepartmentViewModel();
             return View(model);
         }
+
+        [HttpPost]
+        [NonAction]
+        public override ActionResult Create(Department department) { throw new NotImplementedException(); }
 
         [HttpPost]
         public ActionResult Create(CreateDepartmentViewModel viewModel)
@@ -61,7 +55,7 @@ namespace eManager.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int DepartmentID)
+        public override ActionResult Edit(int DepartmentID)
         {
             var model = repository.FindById(DepartmentID);
             var viewModel = new EditDepartmentViewModel();
@@ -71,6 +65,10 @@ namespace eManager.Web.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        [NonAction]
+        public override ActionResult Edit(Department department) { throw new NotImplementedException(); }
 
         [HttpPost]
         public ActionResult Edit(//[Bind(Include = "DepartmentID, Name, RowVersion")]
@@ -131,7 +129,7 @@ namespace eManager.Web.Controllers
             var departmentList = repository.FindAll().ToList();
             var departments = departmentList.Select(d => new DepartmentLayout()
             {
-                Id = d.DepartmentID,
+                Id = d.Id,
                 Name = d.Name,
                 X = d.X,
                 Y = d.Y,

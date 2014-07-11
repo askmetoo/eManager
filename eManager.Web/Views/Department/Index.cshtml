@@ -31,15 +31,24 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit",
-                    new { DepartmentID = department.DepartmentID },
+                    new { Id = department.Id },
                     new { @class = "btn btn-default btn-xs" }) |
-                @Html.ActionLink("Detail", "Detail",
-                    new { DepartmentID = department.DepartmentID },
+                @Html.ActionLink("Details", "Details",
+                    new { Id = department.Id },
                     new { @class = "btn btn-default btn-xs" }) |
                 @Html.ActionLink("Delete", "Delete",
-                    new { DepartmentID = department.DepartmentID },
-                    new { @class = "btn btn-default btn-xs" })
+                    new { Id = department.Id },
+                    new { @class = "btn btn-default btn-xs", data_toggle="modal", data_target="#deleteModal" })
             </td>
         </tr>
     }
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- /.modal -->

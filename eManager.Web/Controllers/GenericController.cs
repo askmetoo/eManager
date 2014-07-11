@@ -25,7 +25,7 @@ namespace eManager.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            var model = this.repository.FindAll();
+            var model = this.repository.FindAll().ToList();
             return View(model);
         }
 
@@ -43,7 +43,7 @@ namespace eManager.Web.Controllers
             return View(@entity);
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
@@ -51,7 +51,7 @@ namespace eManager.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         // [Bind(Include = "Field1,Field2,Field3")] 
-        public ActionResult Create(T @entity)
+        public virtual ActionResult Create(T @entity)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace eManager.Web.Controllers
             return View(@entity);
         }
 
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -79,7 +79,7 @@ namespace eManager.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(T @entity)
+        public virtual ActionResult Edit(T @entity)
         {
             if (ModelState.IsValid)
             {

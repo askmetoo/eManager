@@ -25,13 +25,13 @@ namespace eManager.Web.DAL
             var employees = new List<Employee>
             {
                 new Employee { EmployeeID=10001, Name="Ahsan Aqeel", HireDate=DateTime.Parse("2010-01-02"),
-                    DepartmentID = departments.Single(d => d.Name == "Engineering").DepartmentID },
+                    DepartmentID = departments.Single(d => d.Name == "Engineering").Id },
                 new Employee { EmployeeID=10002, Name="Ali Raza", HireDate=DateTime.Parse("2010-02-01"),
-                    DepartmentID = departments.Single(d => d.Name == "Purchasing").DepartmentID },
+                    DepartmentID = departments.Single(d => d.Name == "Purchasing").Id },
                 new Employee { EmployeeID=10003, Name="Mussab Vahedy", HireDate=DateTime.Parse("2012-03-05"),
-                    DepartmentID = departments.Single(d => d.Name == "Engineering").DepartmentID },
+                    DepartmentID = departments.Single(d => d.Name == "Engineering").Id },
                 new Employee { EmployeeID=10004, Name="Nabeel Shawkat", HireDate=DateTime.Parse("2011-11-12"),
-                    DepartmentID = departments.Single(d => d.Name == "Shipping").DepartmentID }
+                    DepartmentID = departments.Single(d => d.Name == "Shipping").Id }
             };
 
             employees.ForEach(s => context.Employees.Add(s));

@@ -7,7 +7,7 @@
 </ol>
 
 <p>
-    @Html.ActionLink("Create Employees", "Create", "Employee", new { departmentId = Model.DepartmentID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create Employees", "Create", "Employee", new { departmentId = Model.Id }, new { @class = "btn btn-primary" })
 </p>
 
 <h4>Department</h4>
@@ -18,8 +18,8 @@
         <th>Value</th>
     </tr>
     <tr>
-        <td>@Html.DisplayNameFor(model => model.DepartmentID)</td>
-        <td>@Html.DisplayFor(model => model.DepartmentID)</td>
+        <td>@Html.DisplayNameFor(model => model.Id)</td>
+        <td>@Html.DisplayFor(model => model.Id)</td>
     </tr>
     <tr>
         <td>@Html.DisplayNameFor(model => model.Name)</td>
@@ -50,6 +50,7 @@
         </tr>
     }
 </table>
+
 <ul class="pager">
     <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
 </ul>

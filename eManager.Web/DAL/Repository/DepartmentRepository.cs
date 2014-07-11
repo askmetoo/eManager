@@ -26,7 +26,7 @@ namespace eManager.Web.DAL.Repository
 
         public void Remove(Department removeEntity)
         {
-            throw new NotImplementedException();
+            context.Departments.Remove(removeEntity);
         }
 
         public void Update(Department updateEntity)
@@ -36,7 +36,7 @@ namespace eManager.Web.DAL.Repository
 
         public Department FindById(int id)
         {
-            return context.Departments.Single(d => d.DepartmentID == id);
+            return context.Departments.Single(d => d.Id == id);
         }
 
         public IQueryable<Department> Find(Expression<Func<Department, bool>> predicate)

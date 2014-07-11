@@ -41,7 +41,7 @@ namespace eManager.Web.Controllers
             if (departmentId != null)
             {
                 viewModel.Employees = viewModel.Departments.Where(
-                    d => d.DepartmentID == departmentId).Single().Employees;
+                    d => d.Id == departmentId).Single().Employees;
             }
 
             if (employeeId != null)
