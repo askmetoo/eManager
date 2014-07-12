@@ -34,7 +34,7 @@ namespace eManager.Web.Controllers
 
         [HttpPost]
         [NonAction]
-        public override ActionResult Create(Department department) { throw new NotImplementedException(); }
+        public override ActionResult Create(Department department) { return View(); }
 
         [HttpPost]
         public ActionResult Create(CreateDepartmentViewModel viewModel)

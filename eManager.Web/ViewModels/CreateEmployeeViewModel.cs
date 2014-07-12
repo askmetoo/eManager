@@ -9,13 +9,13 @@ namespace eManager.Web.ViewModels
 {
     public class CreateEmployeeViewModel
     {
-        [HiddenInput(DisplayValue=false)]
-        [Display(Name = "Department ID")]
-        public int DepartmentId { get; set; }
-
         [Required]
         [Display(Name = "ID")]
         public int Id { get; set; }
+
+        [HiddenInput(DisplayValue=false)]
+        [Display(Name = "Department ID")]
+        public int DepartmentId { get; set; }
 
         [Required]
         public string Name { get; set; }

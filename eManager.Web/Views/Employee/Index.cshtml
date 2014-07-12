@@ -34,18 +34,12 @@
                 new { Id = employee.Id },
                 new { @class = "btn btn-default btn-xs" }) |
             @Html.ActionLink("Delete", "Delete",
-                 new { Id = employee.Id },
+                new { Id = employee.Id },
                 new { @class = "btn btn-default btn-xs", data_toggle = "modal", data_target = "#deleteModal" })
         </td>
     </tr>
 }
-
 </table>
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager( Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }))
 
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
@@ -55,3 +49,8 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
     </div>
 </div>
 <!-- /.modal -->
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager( Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }))

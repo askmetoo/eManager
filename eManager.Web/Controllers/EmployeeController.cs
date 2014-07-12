@@ -11,14 +11,18 @@ using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : GenericController<Employee>
     {
         private IEmployeeRepository repository;
 
         public EmployeeController(IEmployeeRepository repository)
+            : base(repository)
         {
             this.repository = repository;
         }
+
+        [NonAction]
+        public override ActionResult Index() { return View(); }
 
         public ActionResult Index(string sortOrder, int? page)
         {
@@ -51,6 +55,9 @@ namespace eManager.Web.Controllers
             //return View(_db.Employees);
         }
 
+        [NonAction]
+        public override ActionResult Create() { return View(); }
+
         [HttpGet]
         public ActionResult Create(int departmentId)
         {
@@ -59,6 +66,10 @@ namespace eManager.Web.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        [NonAction]
+        public override ActionResult Create(Employee employee) { return View(); }
 
         [HttpPost]
         public ActionResult Create(CreateEmployeeViewModel viewModel)
@@ -76,16 +87,10 @@ namespace eManager.Web.Controllers
                 repository.Add(employee);
                 repository.Save();
 
-                return RedirectToAction("Detail", "Department", new { viewModel.DepartmentId });
+                return RedirectToAction("Details", "Department", new { id = viewModel.DepartmentId });
             }
 
             return View(viewModel);
-        }
-
-        public ActionResult Details(int Id)
-        {
-            var model = repository.FindAll().Single(e => e.Id == Id);
-            return View(model);
         }
 
         [HttpGet]
@@ -105,15 +110,9 @@ namespace eManager.Web.Controllers
             return Json(dependents, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult Edit(int Id)
-        {
-            Employee employee = repository.FindById(Id);
-            if (employee == null)
-                return HttpNotFound();
-
-            return View(employee);
-        }
+        [HttpPost]
+        [NonAction]
+        public override ActionResult Edit(Employee employee) { return View(); }
 
         [HttpPost]
         public ActionResult Edit([FromJson] IEnumerable<DependentViewModel> dependents,

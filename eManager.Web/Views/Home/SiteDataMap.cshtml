@@ -42,7 +42,7 @@
                     <tr>
                         <td>
                             @Html.ActionLink("Select", "SiteDataMap", 
-                                new { departmentId = item.DepartmentID, employeeId = item.EmployeeID },
+                                new { departmentId = item.DepartmentID, employeeId = item.Id },
                                 new { @class = "btn btn-default btn-xs" })
                         </td>
                         <td> @item.Name</td>

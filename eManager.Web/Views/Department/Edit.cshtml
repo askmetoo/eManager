@@ -6,6 +6,10 @@
     <li class="active">Edit</li>
 </ol>
 
+<p>
+    @Html.ActionLink("Create Employees", "Create", "Employee", new { departmentId = Model.Id }, new { @class = "btn btn-primary" })
+</p>
+
 @using (Html.BeginForm("Edit", "Department", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
