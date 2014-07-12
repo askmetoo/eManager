@@ -4,104 +4,86 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+    <li class="active">Edit</li>
+</ol>
 
-@using (Html.BeginForm()) {
+<p>
+    @Html.ActionLink("Manage Dependent", "Dependents", new { Id = Model.Id },
+                    new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#dependentModal" })
+</p>
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Employee</legend>
+        <legend>Edit Employee</legend>
+        @Html.HiddenFor(model => model.Id)
 
-        @Html.HiddenFor(model => model.EmployeeID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Department ID",
+                new { @class = "col-sm-2 control-label" })
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DepartmentID)
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.DepartmentID,
+                    new { htmlAttributes = new { @class = "form-control" }})
+                @Html.ValidationMessageFor(model => model.DepartmentID)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DepartmentID)
-            @Html.ValidationMessageFor(model => model.DepartmentID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Name",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Name,
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Hire Date",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.HireDate,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HireDate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Profile",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Profile,
+                    new { @class = "ckeditor", @id = "profile" })
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.HireDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.HireDate)
-            @Html.ValidationMessageFor(model => model.HireDate)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Profile , new { @class = "ckeditor", @id = "profile" })
-        </div>
-
-        <p>
-            <input type="submit" value="Save Employee" />
-        </p>
     </fieldset>
 }
 
-<p>Total <span data-bind='text: dependents().length'>&nbsp;</span> dependent(s)</p>
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>
 
-<table>
-    <tbody data-bind="template: { name: 'dependentRowTemplate', foreach: dependents }"></tbody>
-</table>
- 
-<script type="text/html" id="dependentRowTemplate">
-    <tr>
-        <td>Name: <input data-bind="value: Name" /></td>
-        <td>Age: <input data-bind="value: Age" /></td>
-        <td>
-            Relation:
-            <select data-bind="value: Relation">
-                <option value="0">Parents</option>
-                <option value="1">Spouce</option>
-                <option value="2">Children</option>
-            </select>
-        </td>
-        <td><a href="#" data-bind="click: function () { $parent.removeDependent($data) }">Delete</a></td>
-    </tr>
-</script>
-
-<button data-bind="click: addDependent">Add Dependent</button>
-
-<form class="dependentListEditor" data-bind="submit: save">
-    <button data-bind="enable: dependents().length > 0" type="submit" >Save Dependents</button>
-</form>
-
-<script type="text/javascript">
-    $.getJSON('/Employee/GetDependents?EmployeeID=@Model.EmployeeID', function (data) {
-        var viewModel = {
-            dependents: ko.observableArray(data),
-            removed: ko.observableArray(null),
-            addDependent: function () {
-                this.dependents.push({ Name: "", Age: "", EmployeeID: "@Model.EmployeeID", Relation: "" });
-            },
-            removeDependent: function (dependent) {
-                this.dependents.remove(dependent);
-                this.removed.push({ Name: dependent.Name, Age: dependent.Age });
-            },
-            save: function () {
-                ko.utils.postJson(location.href, { dependents: this.dependents, removed: this.removed });
-            }
-        };
-
-        $(document).ready(function () {
-            ko.applyBindings(viewModel);
-        });
-    });
-</script>
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<!-- Modal -->
+<div class="modal fade" id="dependentModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
 </div>
+<!-- /.modal -->
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

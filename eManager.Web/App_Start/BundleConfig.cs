@@ -29,7 +29,7 @@ namespace eManager.Web
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-dependents").Include(
-                        "~/Scripts/knockout-3.0.0.js",
+                        "~/Scripts/knockout-{version}.js",
                         "~/Scripts/d3.min.js",
                         "~/Scripts/CKEditor/ckeditor.js",
                         "~/Scripts/multiselect/js/jquery.multi-select.js"));

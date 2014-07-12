@@ -666,10 +666,9 @@
     <Content Include="Views\Department\Edit.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Department\Layout.cshtml" />
-    <Content Include="Views\Department\Search.cshtml" />
     <Content Include="Views\Dependent\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Detail.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\Attachments.cshtml" />
@@ -692,6 +691,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Employee\Dependents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

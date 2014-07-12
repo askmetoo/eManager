@@ -14,8 +14,8 @@ namespace eManager.Web.ViewModels
         public int DepartmentId { get; set; }
 
         [Required]
-        [Display(Name = "Employee ID")]
-        public int EmployeeID { get; set; }
+        [Display(Name = "ID")]
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }

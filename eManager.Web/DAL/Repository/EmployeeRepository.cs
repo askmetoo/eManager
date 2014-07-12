@@ -35,7 +35,7 @@ namespace eManager.Web.DAL.Repository
 
         public Employee FindById(int id)
         {
-            return context.Employees.Single(e => e.EmployeeID == id);
+            return context.Employees.Single(e => e.Id == id);
         }
 
         public IQueryable<Employee> Find(Expression<Func<Employee, bool>> predicate)
@@ -48,9 +48,9 @@ namespace eManager.Web.DAL.Repository
             return context.Employees;
         }
 
-        public ICollection<Dependent> FindDependents(int employeeId)
+        public ICollection<Dependent> FindDependents(int Id)
         {
-            var employee = this.FindById(employeeId);
+            var employee = this.FindById(Id);
             return employee.Dependents;
         }
 

@@ -108,22 +108,6 @@ namespace eManager.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(string query)
-        {
-            if (!string.IsNullOrEmpty(query))
-            {
-                var context = 0;
-                //var context = _db.Departments
-                //                 .Where(d => d.Name.Contains(query))
-                //                 .Take(10);
- 
-                return View(context);
-            }
-            else
-                return View();
-        }
-
-        [HttpGet]
         public ActionResult GetLayout()
         {
             var departmentList = repository.FindAll().ToList();

@@ -1,0 +1,58 @@
+﻿@model eManager.Web.Models.Employee
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+    <li class="active">Detail - @Model.Name</li>
+</ol>
+
+<h4>Employee</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Title</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.DepartmentID)</td>
+        <td>@Html.DisplayFor(model => model.DepartmentID)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Name)</td>
+        <td>@Html.DisplayFor(model => model.Name)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.HireDate)</td>
+        <td>@Html.DisplayFor(model => model.HireDate)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Profile)</td>
+        <td>@Html.Raw(HttpUtility.HtmlDecode(Model.Profile))</td>
+    </tr></table>
+
+<h4>Dependents</h4>
+
+<p>Total @Model.Dependents.Count() dependent(s)</p>
+
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Relation</th>
+
+    </tr>
+    @foreach (var dependent in Model.Dependents)
+    {
+        <tr>
+            <td>@dependent.Name</td>
+            <td>@dependent.Age</td>
+            <td>@dependent.Relation</td>
+
+        </tr>
+    }
+</table>
+
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>

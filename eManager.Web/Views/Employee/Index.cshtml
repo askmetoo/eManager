@@ -2,15 +2,10 @@
 @using PagedList.Mvc; 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Employees</li>
+</ol>
 
 <table class="table table-hover">
     <tr>
@@ -23,18 +18,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var employee in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => employee.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HireDate)
+            @Html.DisplayFor(modelItem => employee.HireDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { EmployeeID = item.EmployeeID }) |
-            @Html.ActionLink("Detail", "Detail", new { EmployeeID = item.EmployeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
+            @Html.ActionLink("Edit", "Edit",
+                new { Id = employee.Id },
+                new { @class = "btn btn-default btn-xs" }) |
+            @Html.ActionLink("Details", "Details",
+                new { Id = employee.Id },
+                new { @class = "btn btn-default btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete",
+                 new { Id = employee.Id },
+                new { @class = "btn btn-default btn-xs", data_toggle = "modal", data_target = "#deleteModal" })
         </td>
     </tr>
 }
@@ -43,4 +44,14 @@
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager( Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )
+@Html.PagedListPager( Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }))
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- /.modal -->

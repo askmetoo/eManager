@@ -24,13 +24,13 @@ namespace eManager.Web.DAL
 
             var employees = new List<Employee>
             {
-                new Employee { EmployeeID=10001, Name="Ahsan Aqeel", HireDate=DateTime.Parse("2010-01-02"),
+                new Employee { Id=10001, Name="Ahsan Aqeel", HireDate=DateTime.Parse("2010-01-02"),
                     DepartmentID = departments.Single(d => d.Name == "Engineering").Id },
-                new Employee { EmployeeID=10002, Name="Ali Raza", HireDate=DateTime.Parse("2010-02-01"),
+                new Employee { Id=10002, Name="Ali Raza", HireDate=DateTime.Parse("2010-02-01"),
                     DepartmentID = departments.Single(d => d.Name == "Purchasing").Id },
-                new Employee { EmployeeID=10003, Name="Mussab Vahedy", HireDate=DateTime.Parse("2012-03-05"),
+                new Employee { Id=10003, Name="Mussab Vahedy", HireDate=DateTime.Parse("2012-03-05"),
                     DepartmentID = departments.Single(d => d.Name == "Engineering").Id },
-                new Employee { EmployeeID=10004, Name="Nabeel Shawkat", HireDate=DateTime.Parse("2011-11-12"),
+                new Employee { Id=10004, Name="Nabeel Shawkat", HireDate=DateTime.Parse("2011-11-12"),
                     DepartmentID = departments.Single(d => d.Name == "Shipping").Id }
             };
 
@@ -40,16 +40,16 @@ namespace eManager.Web.DAL
             var dependents = new List<Dependent>
             {
                 new Dependent { Name = "Fahad Survar", Age=12, Relation=Constants.Relationship.Children,
-                    EmployeeID = employees.SingleOrDefault(d => d.EmployeeID == 10002).EmployeeID
+                    EmployeeID = employees.SingleOrDefault(d => d.Id == 10002).Id
                 },
                 new Dependent { Name = "Sana Mukhtar", Age=30, Relation=Constants.Relationship.Spouce,
-                    EmployeeID = employees.SingleOrDefault(d => d.EmployeeID == 10002).EmployeeID
+                    EmployeeID = employees.SingleOrDefault(d => d.Id == 10002).Id
                 },
                 new Dependent { Name = "Noama Khalid", Age=28, Relation=Constants.Relationship.Spouce,
-                    EmployeeID = employees.SingleOrDefault(d => d.EmployeeID == 10001).EmployeeID
+                    EmployeeID = employees.SingleOrDefault(d => d.Id == 10001).Id
                 },
                 new Dependent { Name = "Atif Khan", Age=62, Relation=Constants.Relationship.Parents,
-                    EmployeeID = employees.SingleOrDefault(d => d.EmployeeID == 10003).EmployeeID
+                    EmployeeID = employees.SingleOrDefault(d => d.Id == 10003).Id
                 }
             };
 

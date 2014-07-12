@@ -20,10 +20,18 @@ namespace eManager.Web
         {
             public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
             {
-                var stringified = controllerContext.HttpContext.Request[bindingContext.ModelName];
-                if (string.IsNullOrEmpty(stringified))
+                try
+                {
+                    var stringified = controllerContext.HttpContext.Request[bindingContext.ModelName];
+                    if (string.IsNullOrEmpty(stringified))
+                        return null;
+                    return serializer.Deserialize(stringified, bindingContext.ModelType);
+                }
+                catch(Exception ex)
+                {
+                    //TODO: Handle specific exceptions
                     return null;
-                return serializer.Deserialize(stringified, bindingContext.ModelType);
+                }
             }
         }
     }

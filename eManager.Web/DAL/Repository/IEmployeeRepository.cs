@@ -10,7 +10,7 @@ namespace eManager.Web.DAL.Repository
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {
-        ICollection<Dependent> FindDependents(int employeeId);
+        ICollection<Dependent> FindDependents(int Id);
         void AddDependent(Dependent addEntity);
         void RemoveDependent(Dependent removeEntity);
     }

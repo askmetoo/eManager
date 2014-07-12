@@ -11,7 +11,7 @@ namespace eManager.Web.Models
     public class Employee
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public virtual int EmployeeID { get; set; }
+        public virtual int Id { get; set; }
         public virtual int DepartmentID { get; set; }
         public virtual string Name { get; set; }
         public virtual DateTime? BirthDate { get; set; }
