@@ -226,7 +226,7 @@
     <Compile Include="ViewModels\DependentViewModel.cs" />
     <Compile Include="ViewModels\EditDepartmentViewModel.cs" />
     <Compile Include="ViewModels\EventCalendarViewModel.cs" />
-    <Compile Include="ViewModels\SiteDataMapViewModel.cs" />
+    <Compile Include="ViewModels\BrowseOrgDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -685,7 +685,7 @@
     <Content Include="Scripts\multiselect\multi-select.jquery.json" />
     <Content Include="Scripts\multiselect\README.markdown" />
     <Content Include="Scripts\multiselect\test\lib\jasmine-1.2.0\MIT.LICENSE" />
-    <Content Include="Views\Home\SiteDataMap.cshtml">
+    <Content Include="Views\Home\BrowseOrgData.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Department\Delete.cshtml" />

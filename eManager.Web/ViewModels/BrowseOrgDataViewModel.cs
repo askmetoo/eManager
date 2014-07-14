@@ -6,7 +6,7 @@ using System.Web;
 
 namespace eManager.Web.ViewModels
 {
-    public class SiteDataMapViewModel
+    public class BrowseOrgDataViewModel
     {
         public IEnumerable<Department> Departments { get; set; }
         public IEnumerable<Employee> Employees { get; set; }

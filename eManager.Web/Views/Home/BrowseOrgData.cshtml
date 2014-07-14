@@ -1,10 +1,9 @@
-﻿@model eManager.Web.ViewModels.SiteDataMapViewModel
+﻿@model eManager.Web.ViewModels.BrowseOrgDataViewModel
 
-@{
-    ViewBag.Title = "SiteDataMap";
-}
-
-<h2>SiteDataMap</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Browse Org. Data</li>
+</ol>
 
 <div class="row">
     <div class="col-md-6">
@@ -19,7 +18,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink("Select", "SiteDataMap",
+                        @Html.ActionLink("Select", "BrowseOrgData",
                             new { departmentId = item.Id },
                             new { @class = "btn btn-default btn-xs" })                  
                     </td>
@@ -41,7 +40,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink("Select", "SiteDataMap", 
+                            @Html.ActionLink("Select", "BrowseOrgData", 
                                 new { departmentId = item.DepartmentID, employeeId = item.Id },
                                 new { @class = "btn btn-default btn-xs" })
                         </td>

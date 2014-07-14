@@ -30,10 +30,10 @@ namespace eManager.Web.Controllers
             return View();
         }
 
-        public ActionResult SiteDataMap(int? departmentId, int? employeeId)
+        public ActionResult BrowseOrgData(int? departmentId, int? employeeId)
         {
             eManagerContext db = new eManagerContext();
-            var viewModel = new SiteDataMapViewModel();
+            var viewModel = new BrowseOrgDataViewModel();
 
             viewModel.Departments = db.Departments.ToList();
             //.Include(e => e.Employees.Select(d => d.Department));
