@@ -30,7 +30,7 @@ namespace eManager.Web.Controllers
                 events.Add(
                     new EventCalendarViewModel
                     {
-                        EventID = e.EventID,
+                        EventID = e.Id,
                         Title = e.Title,
                         StartDate = e.StartDate.ToString("yyyy-MM-dd HH:mm:ss"),
                         EndDate = e.EndDate.ToString("yyyy-MM-dd HH:mm:ss"),

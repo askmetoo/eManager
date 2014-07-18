@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<eManager.Web.Models.Event>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Events</li>
+</ol>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create Event", "Create", "Event", null, new { @class = "btn btn-primary" })
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -19,9 +19,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
@@ -41,20 +38,32 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
+            @Html.ActionLink("Edit", "Edit",
+                 new { Id = item.Id },
+                 new { @class = "btn btn-default btn-xs" }) |
+            @Html.ActionLink("Details", "Details",
+                 new { Id = item.Id },
+                 new { @class = "btn btn-default btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete",
+                 new { Id = item.Id },
+                 new { @class = "btn btn-default btn-xs", data_toggle = "modal", data_target = "#deleteModal" })
         </td>
     </tr>
 }
 
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
 
 <div id="calendar"></div>
 

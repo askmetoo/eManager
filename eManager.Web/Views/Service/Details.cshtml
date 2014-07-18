@@ -1,34 +1,36 @@
 ﻿@model eManager.Web.Models.Service
 
-@{
-    ViewBag.Title = "Details";
-}
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Service", "Index", "Service")</li>
+    <li class="active">Service - @Model.Id</li>
+</ol>
 
-<h2>Details</h2>
+<h4>Service</h4>
 
-<div>
-    <h4>Service</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+<table class="table table-bordered">
+    <tr>
+        <th>Title</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Id)</td>
+        <td>@Html.DisplayFor(model => model.Id)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Title)</td>
+        <td>@Html.DisplayFor(model => model.Title)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Header)</td>
+        <td>@Html.DisplayFor(model => model.Header)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Description)</td>
+        <td>@Html.DisplayFor(model => model.Description)</td>
+    </tr>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>
