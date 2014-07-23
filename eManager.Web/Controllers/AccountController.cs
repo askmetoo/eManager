@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using eManager.Web.DAL;
+using eManager.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using eManager.Web.Models;
-using eManager.Web.DAL;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace eManager.Web.Controllers
 {

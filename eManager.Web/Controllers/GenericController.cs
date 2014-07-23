@@ -1,14 +1,7 @@
-﻿using eManager.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using eManager.Web.DAL.Repository;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using eManager.Web.ViewModels;
-using eManager.Web.DAL.Repository;
-using eManager.Web.DAL;
 using System.Net;
+using System.Web.Mvc;
 
 namespace eManager.Web.Controllers
 {

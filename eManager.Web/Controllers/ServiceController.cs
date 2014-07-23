@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using eManager.Web.DAL;
+using eManager.Web.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using eManager.Web.Models;
-using eManager.Web.DAL;
 
 namespace eManager.Web.Controllers
 {
@@ -47,7 +43,7 @@ namespace eManager.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Description")] Service service)
+        public ActionResult Create([Bind(Include="Id,Title,Header,Description")] Service service)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +75,7 @@ namespace eManager.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Description")] Service service)
+        public ActionResult Edit([Bind(Include="Id,Title,Header,Description")] Service service)
         {
             if (ModelState.IsValid)
             {

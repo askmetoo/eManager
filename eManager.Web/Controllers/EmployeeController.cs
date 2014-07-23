@@ -1,13 +1,11 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Web.DAL.Repository;
+using eManager.Web.Models;
 using eManager.Web.ViewModels;
+using PagedList;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using eManager.Web.DAL.Repository;
 
 namespace eManager.Web.Controllers
 {

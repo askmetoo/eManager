@@ -1,17 +1,11 @@
 ﻿using AutoMapper;
+using eManager.Web.DAL.Repository;
 using eManager.Web.Models;
+using eManager.Web.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using eManager.Web.ViewModels;
-using eManager.Web.DAL.Repository;
-using eManager.Web.DAL;
-using System.Linq.Expressions;
 
 namespace eManager.Web.Controllers
 {
