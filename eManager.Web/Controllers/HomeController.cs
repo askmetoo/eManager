@@ -86,5 +86,10 @@ namespace eManager.Web.Controllers
 
             return RedirectToAction("Attachments");
         }
+
+        public ActionResult Administration()
+        {
+            return View();
+        }
     }
 }

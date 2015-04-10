@@ -32,6 +32,9 @@ namespace eManager.Web
                         "~/Scripts/d3.min.js",
                         "~/Scripts/CKEditor/ckeditor.js",
                         "~/Scripts/multiselect/js/jquery.multi-select.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                        "~/Scripts/SignalR/messaging.js"));
         }
     }
 }

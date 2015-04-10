@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,8 +10,15 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jquery-dependents")
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    @Scripts.Render("~/bundles/signalr")
+
 </head>
 <body>
+    <div class="container">
+        <p id="discussion"></p>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,6 +48,7 @@
                     <li>@Html.ActionLink("Events", "Index", "Event")</li>
                     <li>@Html.ActionLink("Attachments", "Attachments", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Administration", "Administration", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
