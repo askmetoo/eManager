@@ -1,0 +1,148 @@
+﻿@model eManager.Web.ViewModels.BrowseOrgDataViewModel
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Browse Org. Data</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4> Departments </h4>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Title</th>
+            </tr>
+
+            @foreach (var item in Model.Departments)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Select", "BrowseOrgData",
+                            new { departmentId = item.Id },
+                            new { @class = "btn btn-default btn-xs" })                  
+                    </td>
+                    <td>@item.Name</td>
+                </tr>
+            }
+        </table>
+
+        <table class="table">
+            @if (Model.Employees != null && Model.Employees.Count() != 0)
+            {
+                <h4> @Model.Employees.First().Department.Name Employees </h4>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Hire Date</th>
+                </tr>
+                foreach (var item in Model.Employees)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Select", "BrowseOrgData", 
+                                new { departmentId = item.DepartmentID, employeeId = item.Id },
+                                new { @class = "btn btn-default btn-xs" })
+                        </td>
+                        <td> @item.Name</td>
+                        <td>@item.HireDate</td>
+                    </tr>
+                }
+            }
+        </table>
+
+        <table class="table">
+            @if (Model.Dependents != null && Model.Dependents.Count() != 0)
+            {
+                <h4> @Model.Dependents.First().Employee.Name Dependents </h4>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Relation</th>
+                </tr>
+                foreach (var item in Model.Dependents)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Age</td>
+                        <td>@item.Relation</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4> Departments</h4>
+        <select id='deptlist' multiple='multiple'>
+            @foreach (var department in Model.Departments)
+            {
+                <option value=@department.Id>@department.Name</option>
+            }
+        </select>
+
+        <h4> Employees</h4>
+        <select id='emplist' multiple='multiple'></select>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function reloadList() {
+        $('#emplist').multiSelect('destroy');
+        $('#emplist').multiSelect({
+            selectableHeader: "<div style='text-align: center; background:#CEE3F6'><b>Available</b></div>",
+            selectionHeader: "<div style='text-align: center; background:#CEE3F6'><b>Selected</b></div>",
+        });
+    }
+
+    function manageItems(operation, selectedValue) {
+        $.getJSON("/Home/GetEmployees?DepartmentID=" + selectedValue,
+            function (employeeList) {
+                $.each(employeeList, function (i, employee) {
+                    if (operation == 'add') {
+                        $("#emplist").append('<option value="' + employee.Name + '">'
+                            + employee.Name + '</option>');
+                    }
+                    else if (operation == 'remove') {
+                        $("#emplist option[value='" + employee.Name + "']").remove();
+                    }
+                    else
+                        alert('invalid operation')
+
+                    reloadList();
+                });
+            });
+    }
+
+    $('#deptlist').multiSelect({
+        afterSelect: function (selectedValue) {
+            manageItems('add', selectedValue)
+        },
+        afterDeselect: function (selectedValue) {
+            manageItems('remove', selectedValue)
+        },
+        selectableHeader: "<div style='text-align: center; background:#CEE3F6'><b>Available</b> <a href='#' id='select-all'>select all</a></div>",
+        selectionHeader: "<div style='text-align: center; background:#CEE3F6'><b>Selected</b> <a href='#' id='deselect-all'>remove all</a></div>"
+    });
+
+    $('#select-all').click(function () {
+        $('#deptlist').multiSelect('select_all');
+        $("#deptlist option").each(function (i, item) {
+            manageItems('add', item.value)
+        });
+        return false;
+    });
+
+    $('#deselect-all').click(function () {
+        $('#deptlist').multiSelect('deselect_all');
+        $("#deptlist option").each(function (i, item) {
+            manageItems('remove', item.value)
+        });
+        return false;
+    });
+
+    $('#emplist').multiSelect({
+        selectableHeader: "<div style='text-align: center; background:#CEE3F6'><b>Available</b></div>",
+        selectionHeader: "<div style='text-align: center; background:#CEE3F6'><b>Selected</b></div>",
+    });
+
+</script>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<eManager.Web.Models.Department>
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">Departments</li>
+</ol>
+
+<p>
+    @Html.ActionLink("Create Department", "Create", "Department", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th >
+            @Html.ActionLink("Title", "index")
+        </th>
+        <th>
+            @Html.ActionLink("Employees", "index")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var department in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(d => department.Name)
+            </td>
+            <td>
+                @department.Employees.Count
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit",
+                    new { Id = department.Id },
+                    new { @class = "btn btn-default btn-xs" }) |
+                @Html.ActionLink("Details", "Details",
+                    new { Id = department.Id },
+                    new { @class = "btn btn-default btn-xs" }) |
+                @Html.ActionLink("Delete", "Delete",
+                    new { Id = department.Id },
+                    new { @class = "btn btn-default btn-xs", data_toggle="modal", data_target="#deleteModal" })
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- /.modal -->

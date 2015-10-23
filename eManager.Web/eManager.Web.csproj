@@ -218,6 +218,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Services\LegacyWebService.asmx.cs">
+      <DependentUpon>LegacyWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SignalR\MessagingHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constants.cs" />
@@ -615,6 +619,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\eManagerTestDeployment.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -648,6 +653,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\SignalR\messaging.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Services\LegacyWebService.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

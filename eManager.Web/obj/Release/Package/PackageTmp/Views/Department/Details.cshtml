@@ -1,0 +1,52 @@
+﻿@model eManager.Web.Models.Department
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Department", "Index", "Department")</li>
+    <li class="active">Detail - @Model.Name</li>
+</ol>
+
+<h4>Department</h4>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Title</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Id)</td>
+        <td>@Html.DisplayFor(model => model.Id)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Name)</td>
+        <td>@Html.DisplayFor(model => model.Name)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Category)</td>
+        <td>@Html.DisplayFor(model => model.Category)</td>
+    </tr>
+</table>
+
+<h4>Employees</h4>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Hire Date</th>
+
+    </tr>
+    @foreach (var employee in Model.Employees)
+    {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.Name</td>
+            <td>@employee.HireDate</td>
+
+        </tr>
+    }
+</table>
+
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>

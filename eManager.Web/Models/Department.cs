@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 namespace eManager.Web.Models
 {
@@ -17,6 +18,7 @@ namespace eManager.Web.Models
         [Timestamp]
         public virtual byte[] RowVersion { get; set; }
 
+        [XmlIgnore]
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }

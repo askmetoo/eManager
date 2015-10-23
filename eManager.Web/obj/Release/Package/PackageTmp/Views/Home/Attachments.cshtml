@@ -1,0 +1,26 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Attachments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attachments</h2>
+
+<h4>Available Files</h4>
+<ul>
+    @foreach (var fullPath in Model)
+{
+    var fileName = Path.GetFileName(fullPath);
+    <li>
+        <a href="~/attachments/@fileName">@fileName</a>
+    </li>
+}
+</ul>
+
+<h4>Add File</h4>
+<form action="/home/attachments" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" value="Upload" />
+</form>

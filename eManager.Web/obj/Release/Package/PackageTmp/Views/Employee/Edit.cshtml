@@ -1,0 +1,90 @@
+﻿@model eManager.Web.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+    <li class="active">Edit</li>
+</ol>
+
+<p>
+    @Html.ActionLink("Manage Dependents", "Dependents", new { Id = Model.Id },
+                    new { @class = "btn btn-primary", data_toggle = "modal", data_target = "#dependentModal" })
+</p>
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit Employee</legend>
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Department ID",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.DepartmentID,
+                    new { htmlAttributes = new { @class = "form-control" }})
+                @Html.ValidationMessageFor(model => model.DepartmentID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Name",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Name,
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Hire Date",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.HireDate,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HireDate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, "Profile",
+                new { @class = "col-sm-2 control-label" })
+
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Profile,
+                    new { @class = "ckeditor", @id = "profile" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </fieldset>
+}
+
+<ul class="pager">
+    <li class="previous">@Html.ActionLink("Back to List", "Index")</li>
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="dependentModal" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
