@@ -12,11 +12,19 @@ namespace eManager.Web.Controllers
     public class DepartmentController : GenericController<Department>
     {
         private IDepartmentRepository repository;
+        private IMapper mapper;
 
         public DepartmentController(IDepartmentRepository repository)
             : base(repository)
         {
             this.repository = repository;
+            mapper = new MapperConfiguration(c =>
+                {
+                    c.CreateMap<CreateDepartmentViewModel, Department>();
+                    c.CreateMap<Department, EditDepartmentViewModel>();
+                    c.CreateMap<EditDepartmentViewModel, Department>();
+                }
+            ).CreateMapper();
         }
 
         [HttpGet]
@@ -36,9 +44,7 @@ namespace eManager.Web.Controllers
             if (ModelState.IsValid)
             {
                 Department department = new Department();
-                Mapper.CreateMap<CreateDepartmentViewModel, Department>();
-                Mapper.Map<CreateDepartmentViewModel, Department>(viewModel, department);
-
+                department = mapper.Map<Department>(viewModel);
                 repository.Add(department);
                 repository.Save();
 
@@ -53,9 +59,7 @@ namespace eManager.Web.Controllers
         {
             var model = repository.FindById(Id);
             var viewModel = new EditDepartmentViewModel();
-
-            Mapper.CreateMap<Department, EditDepartmentViewModel>();
-            Mapper.Map<Department, EditDepartmentViewModel>(model, viewModel);
+            viewModel = mapper.Map<EditDepartmentViewModel>(model);
 
             return View(viewModel);
         }
@@ -71,8 +75,7 @@ namespace eManager.Web.Controllers
             Department department = new Department();
             try
             {
-                Mapper.CreateMap<EditDepartmentViewModel, Department>();
-                Mapper.Map<EditDepartmentViewModel, Department>(viewModel, department);
+                department = mapper.Map<Department>(viewModel);
                 if (ModelState.IsValid)
                 {
                     repository.Update(department);

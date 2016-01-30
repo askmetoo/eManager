@@ -1,7 +1,5 @@
 ﻿
 namespace eManager.Web.ViewModels
 {
-    public class CreateDepartmentViewModel : AbstractDepartment
-    {
-    }
+    public class CreateDepartmentViewModel : AbstractDepartment { }
 }
