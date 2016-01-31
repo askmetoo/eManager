@@ -6,8 +6,6 @@ using System.Web.Mvc;
 namespace eManager.Web.Controllers
 {
     public abstract class GenericController<T> :Controller
-       // where T : class
-       // where TRepo : IDepartmentRepository, new()
     {
         private IRepository<T> repository;
 
@@ -24,11 +22,8 @@ namespace eManager.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             T @entity = this.repository.FindById(id);
+            
             if (@entity == null)
             {
                 return HttpNotFound();
@@ -43,7 +38,6 @@ namespace eManager.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // [Bind(Include = "Field1,Field2,Field3")] 
         public virtual ActionResult Create(T @entity)
         {
             if (ModelState.IsValid)
