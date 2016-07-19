@@ -1,4 +1,4 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 using System.Collections.Generic;
 
 namespace eManager.Web.ViewModels

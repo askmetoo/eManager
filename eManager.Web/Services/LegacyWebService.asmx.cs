@@ -1,6 +1,5 @@
-﻿using eManager.Web.DAL;
-using eManager.Web.DAL.Repository;
-using eManager.Web.Models;
+﻿using eManager.Data;
+using eManager.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

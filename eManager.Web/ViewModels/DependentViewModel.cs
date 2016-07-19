@@ -1,4 +1,4 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 
 namespace eManager.Web.ViewModels
 {

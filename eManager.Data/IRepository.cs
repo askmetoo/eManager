@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace eManager.Web.DAL.Repository
+namespace eManager.Data
 {
     public interface IRepository<T> : IDisposable
     {

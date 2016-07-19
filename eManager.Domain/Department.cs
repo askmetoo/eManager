@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Serialization;
 
-namespace eManager.Web.Models
+namespace eManager.Domain
 {
     public class Department
     {
@@ -17,8 +16,7 @@ namespace eManager.Web.Models
         [ConcurrencyCheck]
         [Timestamp]
         public virtual byte[] RowVersion { get; set; }
-
-        [XmlIgnore]
+        //[XmlIgnore]
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }

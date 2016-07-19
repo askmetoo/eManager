@@ -1,12 +1,19 @@
-﻿using eManager.Web.Models;
+namespace eManager.Data.eManagerMigrations
+{
+using Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
-namespace eManager.Web.DAL
-{
-    public class eManagerInitializer : System.Data.Entity.DropCreateDatabaseAlways<eManagerContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<eManagerContext>
     {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = true;
+            MigrationsDirectory = @"eManagerMigrations";
+        }
+            
         protected override void Seed(eManagerContext context)
         {
             var departments = new List<Department>
@@ -18,7 +25,7 @@ namespace eManager.Web.DAL
                 new Department() { Name = "Human Resource", X = 300, Y = 200, Width = 150, Height = 60 }
             };
 
-            departments.ForEach(s => context.Departments.Add(s));
+            departments.ForEach(s => context.Departments.AddOrUpdate(d => d.Name, s));
             context.SaveChanges();
 
             var employees = new List<Employee>
@@ -33,7 +40,7 @@ namespace eManager.Web.DAL
                     DepartmentID = departments.Single(d => d.Name == "Shipping").Id }
             };
 
-            employees.ForEach(s => context.Employees.Add(s));
+            employees.ForEach(s => context.Employees.AddOrUpdate(e => e.Id, s));
             context.SaveChanges();
 
             var dependents = new List<Dependent>
@@ -52,7 +59,7 @@ namespace eManager.Web.DAL
                 }
             };
 
-            dependents.ForEach(s => context.Dependents.Add(s));
+            dependents.ForEach(s => context.Dependents.AddOrUpdate(d => d.Name, s));
             context.SaveChanges();
 
             var events = new List<Event>
@@ -74,7 +81,7 @@ namespace eManager.Web.DAL
                 }
             };
 
-            events.ForEach(s => context.Events.Add(s));
+            events.ForEach(s => context.Events.AddOrUpdate(e => e.Title, s));
             context.SaveChanges();
 
             var services = new List<Service>
@@ -103,7 +110,7 @@ namespace eManager.Web.DAL
                               
             };
 
-            services.ForEach(s => context.Services.Add(s));
+            services.ForEach(srv => context.Services.AddOrUpdate(s => s.Title, srv));
             context.SaveChanges();
         }
     }

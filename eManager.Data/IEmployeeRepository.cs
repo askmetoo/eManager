@@ -1,7 +1,7 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 using System.Collections.Generic;
 
-namespace eManager.Web.DAL.Repository
+namespace eManager.Data
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {

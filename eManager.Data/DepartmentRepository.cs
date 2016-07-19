@@ -1,10 +1,10 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace eManager.Web.DAL.Repository
+namespace eManager.Data
 {
     public class DepartmentRepository : IDepartmentRepository
     {

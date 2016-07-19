@@ -1,19 +1,12 @@
-namespace eManager.Web.DAL.eManagerMigrations
-{
-using eManager.Web.Models;
+﻿using eManager.Domain;
 using System;
 using System.Collections.Generic;
-    using System.Data.Entity.Migrations;
 using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<eManager.Web.DAL.eManagerContext>
+namespace eManager.Data
+{
+    public class eManagerInitializer : System.Data.Entity.DropCreateDatabaseAlways<eManagerContext>
     {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-            MigrationsDirectory = @"DAL\eManagerMigrations";
-        }
-            
         protected override void Seed(eManagerContext context)
         {
             var departments = new List<Department>
@@ -25,7 +18,7 @@ using System.Linq;
                 new Department() { Name = "Human Resource", X = 300, Y = 200, Width = 150, Height = 60 }
             };
 
-            departments.ForEach(s => context.Departments.AddOrUpdate(d => d.Name, s));
+            departments.ForEach(s => context.Departments.Add(s));
             context.SaveChanges();
 
             var employees = new List<Employee>
@@ -40,7 +33,7 @@ using System.Linq;
                     DepartmentID = departments.Single(d => d.Name == "Shipping").Id }
             };
 
-            employees.ForEach(s => context.Employees.AddOrUpdate(e => e.Id, s));
+            employees.ForEach(s => context.Employees.Add(s));
             context.SaveChanges();
 
             var dependents = new List<Dependent>
@@ -59,7 +52,7 @@ using System.Linq;
                 }
             };
 
-            dependents.ForEach(s => context.Dependents.AddOrUpdate(d => d.Name, s));
+            dependents.ForEach(s => context.Dependents.Add(s));
             context.SaveChanges();
 
             var events = new List<Event>
@@ -81,7 +74,7 @@ using System.Linq;
                 }
             };
 
-            events.ForEach(s => context.Events.AddOrUpdate(e => e.Title, s));
+            events.ForEach(s => context.Events.Add(s));
             context.SaveChanges();
 
             var services = new List<Service>
@@ -110,7 +103,7 @@ using System.Linq;
                               
             };
 
-            services.ForEach(srv => context.Services.AddOrUpdate(s => s.Title, srv));
+            services.ForEach(s => context.Services.Add(s));
             context.SaveChanges();
         }
     }

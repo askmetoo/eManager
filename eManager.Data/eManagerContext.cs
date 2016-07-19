@@ -1,8 +1,8 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace eManager.Web.DAL
+namespace eManager.Data
 {
     public class eManagerContext : DbContext
     {

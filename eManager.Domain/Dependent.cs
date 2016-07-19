@@ -1,5 +1,4 @@
-﻿
-namespace eManager.Web.Models
+﻿namespace eManager.Domain
 {
     public class Dependent
     {

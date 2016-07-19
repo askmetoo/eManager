@@ -1,6 +1,6 @@
-﻿using eManager.Web.Models;
+﻿using eManager.Domain;
 
-namespace eManager.Web.DAL.Repository
+namespace eManager.Data
 {
     public class EventRepository : GenericRepository<Event>, IEventRepository
     {

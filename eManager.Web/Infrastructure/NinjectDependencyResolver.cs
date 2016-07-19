@@ -1,4 +1,4 @@
-﻿using eManager.Web.DAL.Repository;
+﻿using eManager.Data;
 using Ninject;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace eManager.Web.Models
+namespace eManager.Domain
 {
     public static class Constants
     {

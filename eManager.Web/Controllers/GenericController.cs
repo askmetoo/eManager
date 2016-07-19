@@ -1,4 +1,4 @@
-﻿using eManager.Web.DAL.Repository;
+﻿using eManager.Data;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;

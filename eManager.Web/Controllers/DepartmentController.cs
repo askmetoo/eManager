@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using eManager.Web.DAL.Repository;
-using eManager.Web.Models;
+using eManager.Data;
+using eManager.Domain;
 using eManager.Web.ViewModels;
 using System;
 using System.Data.Entity.Infrastructure;

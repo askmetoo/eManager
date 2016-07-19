@@ -1,5 +1,5 @@
-﻿using eManager.Web.DAL;
-using eManager.Web.Models;
+﻿using eManager.Data;
+using eManager.Domain;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
